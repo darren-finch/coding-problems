@@ -51,3 +51,29 @@ class Solution {
         
     }
 }
+
+
+
+class Solution {
+    fun maxSubArray(nums: IntArray): Int {
+        if (nums.size < 2) {
+            return nums[0]
+        }
+        
+        var curSum = nums[0]
+        var maxSum = nums[0]
+        
+        for (i in 1..nums.lastIndex) {
+            curSum += nums[i]
+            if (curSum < 0) {
+                curSum = nums[i]
+                continue
+            }
+            if (curSum > maxSum) {
+                maxSum = curSum
+            }
+        }
+        
+        return maxSum
+    }
+}
