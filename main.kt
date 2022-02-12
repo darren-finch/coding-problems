@@ -75,3 +75,12 @@ class Solution {
         return x.toString().reversed() == x.toString()
     }
 }
+
+
+
+class Solution {
+    fun longestCommonPrefix(strs: Array<String>): String {
+        // Idk, and I really need sleep
+        val prefixes = stringArrayOf("")
+    }
+}
