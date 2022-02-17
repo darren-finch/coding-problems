@@ -107,7 +107,63 @@ class Solution {
 
 
 object Solution {
-  (
     fun areaOrPerimeter(l: Int, w: Int) = if (l == w) l * w else (2 * l) + (2 * w);
-    
-  }
+}
+
+class Solution {
+    fun lengthOfLastWord(s: String): Int {
+        var foundNonSpaceChar = false
+        var length = 0;
+        for (i in s.lastIndex downTo 0) {
+            val curChar = s[i];
+            
+            if (curChar == ' ' && length > 0) {
+                return length;
+            }
+            if (curChar != ' ') {
+                length++;
+            }
+        }
+        
+        return length;
+    }
+}
+
+
+
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
+        var p1 = list1
+        var p2 = list2
+        var p1Next = list1!!.next
+        var p2Next = list2!!.next
+        var head = list1
+        
+        while (p1 != null) {
+            if (p1Next == null) {
+                p1!!.next = p2
+                return head
+            }
+            if (p1Next!!.`val` >= p2!!.`val`) {
+                p1!!.next = p2
+                p2!!.next = p1Next
+                p2 = p2Next
+                p2Next = p2Next!!.next
+            }
+            
+            p1 = p1!!.next
+            p1Next = p1Next!!.next
+        }
+        
+        return head
+    }
+}
