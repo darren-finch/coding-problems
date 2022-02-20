@@ -192,3 +192,31 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun romanToInt(s: String): Int {
+        // Create var sum
+        // Loop through string
+        // Add integer equivalent of { I, V, X, L, C, D, M } to sum
+        // Detect { IV, IX, XL, XC, CD, CM} and add integer equivalent of those to sum
+        // Detect by making sure index isn't at strength.length
+        var sum = 0
+        for (i in s.indices) {
+            
+        }
+    }
+    
+    fun isNormalCharacter(character: Char): Boolean {
+        return when (character) {
+            is "I" -> true
+            is "V" -> true
+            is "X" -> true
+            is "L" -> true
+            is "C" -> true
+            is "D" -> true
+            is "M" -> true
+        }
+    }
+}
