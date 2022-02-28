@@ -274,21 +274,53 @@ class Solution {
 /* The isBadVersion API is defined in the parent class VersionControl.
       fun isBadVersion(version: Int) : Boolean {} */
 
-      class Solution: VersionControl() {
-        override fun firstBadVersion(n: Int) : Int {
-            var left = 1
-            var right = n
-            var mid = (left + right) / 2
-            
-            while (left < right) {
-                mid = (left + right) / 2
-                if (isBadVersion(mid)) {
-                    right = mid - 1
-                } else {
-                    left = mid + 1
+class Solution: VersionControl() {
+    override fun firstBadVersion(n: Int) : Int {
+        var left = 1
+        var right = n
+        var mid = (left + right) / 2
+        
+        while (left < right) {
+            mid = (left + right) / 2
+            if (isBadVersion(mid)) {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+        
+        return mid
+    }
+}
+
+
+
+// Another broken binary search
+class Solution {
+    fun searchInsert(nums: IntArray, target: Int): Int {
+        var left = 0
+        var right = nums.size - 1
+        var mid = left + (right - left) / 2
+        
+        while (left < right) {
+            if (nums[mid] == target) {
+                return mid
+            } else if (nums[right] == target) {
+                return right
+            } else if (mid == left) {
+                if (target < nums[left]) {
+                    return 0
+                } else if (nums[left] < target && target < nums[right]) {
+                    return right
+                } else if (nums[right] < target) {
+                    return right + 1
                 }
             }
             
-            return mid
+            mid = left + (right - left) / 2
         }
+        
+        // Shouldn't reach here
+        return -1
     }
+}
