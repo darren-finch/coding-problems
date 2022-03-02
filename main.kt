@@ -355,3 +355,38 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun searchInsert(nums: IntArray, target: Int): Int {
+        var left = 0
+        var right = nums.size
+        var mid = left + (right - left) / 2
+        
+        while (left < right) {
+            if (target < nums[mid]) {
+                right = mid - 1
+            } else if (target > nums[mid]) {
+                left = mid + 1
+            } else {
+                return mid
+            }
+            
+            mid = left + (right - left) / 2
+        }
+        
+        println("target: " + target)
+        println("left: " + left)
+        println("right: " + right)
+        println("mid: " + mid + "\n")
+        
+        if (target < nums[mid]) {
+            return 0
+        } else if (target > nums[mid]) {
+            return mid + 1
+        } else {
+            return mid
+        }
+    }
+}
