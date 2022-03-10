@@ -431,3 +431,25 @@ class Solution {
         return l
     }
 }
+
+
+
+// SOLVED: BETTER ALGORITHM FOR FIRST BAD VERSION
+class Solution: VersionControl() {
+    override fun firstBadVersion(n: Int) : Int {
+        var l = 1
+        var r = n
+        
+        while (l <= r) {
+            var mid = l + (r - l) / 2
+            
+            if (isBadVersion(mid)) {
+                r = mid - 1
+            } else {
+                l = mid + 1
+            }
+        }
+        
+        return l
+	}
+}
