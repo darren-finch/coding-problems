@@ -453,3 +453,39 @@ class Solution: VersionControl() {
         return l
 	}
 }
+
+
+
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
+        var p1 = head
+        var p2 = head!!.next
+        var offset = 1
+        
+        while (p2!!.next != null) {
+            if (offset < n) {
+                offset++
+            } else {
+                if (p1!!.next!!.next == null) {
+                    p1.next = null
+                } else if (p2!!.next!!.next == null) {
+                    p1.next = p1!!.next!!.next
+                }
+                p1 = p1!!.next
+            }
+            
+            p2 = p2!!.next
+        }
+        
+        return head
+    }
+}
