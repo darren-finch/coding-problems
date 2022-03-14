@@ -86,17 +86,6 @@ class Solution {
 }
 
 
-
-/**
- * Example:
- * var li = ListNode(5)
- * var v = li.`val`
- * Definition for singly-linked list.
- * class ListNode(var `val`: Int) {
- *     var next: ListNode? = null
- * }
- */
-
 class Solution {
     fun hasCycle(head: ListNode?): Boolean {
         var p1 = head
@@ -131,15 +120,6 @@ class Solution {
 
 
 
-/**
- * Example:
- * var li = ListNode(5)
- * var v = li.`val`
- * Definition for singly-linked list.
- * class ListNode(var `val`: Int) {
- *     var next: ListNode? = null
- * }
- */
 class Solution {
     fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
         var p1 = list1
@@ -170,16 +150,6 @@ class Solution {
 
 
 
-/**
- * Example:
- * var ti = TreeNode(5)
- * var v = ti.`val`
- * Definition for a binary tree node.
- * class TreeNode(var `val`: Int) {
- *     var left: TreeNode? = null
- *     var right: TreeNode? = null
- * }
- */
 class Solution {
     fun inorderTraversal(root: TreeNode?): List<Int> {
         val ans = listOf<Int>()
@@ -456,15 +426,6 @@ class Solution: VersionControl() {
 
 
 
-/**
- * Example:
- * var li = ListNode(5)
- * var v = li.`val`
- * Definition for singly-linked list.
- * class ListNode(var `val`: Int) {
- *     var next: ListNode? = null
- * }
- */
 class Solution {
     fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
         var p1 = head
