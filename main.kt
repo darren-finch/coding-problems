@@ -473,3 +473,18 @@ class Solution {
         return l
     }
 }
+
+
+
+// WIP:
+class Solution {
+    fun sortedSquares(nums: IntArray): IntArray {
+        var curNumFinalPos = 0
+        
+        for (i in nums.indices) {
+            nums[curNumFinalPos++] = nums[i] * nums[i];
+        }
+        
+        return nums;
+    }
+}
