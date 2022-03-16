@@ -476,15 +476,31 @@ class Solution {
 
 
 
-// WIP:
+// import kotlin.math.*
+
 class Solution {
     fun sortedSquares(nums: IntArray): IntArray {
-        var curNumFinalPos = 0
-        
-        for (i in nums.indices) {
-            nums[curNumFinalPos++] = nums[i] * nums[i];
+        if (nums.size == 1) {
+            nums[0] *= nums[0]
+            return nums
         }
         
-        return nums;
+        var newNums = IntArray(nums.size)
+        var l = 0
+        var r = 1
+        var newNumPos = 0
+        var minAbsVal = Math.abs(nums[l])
+        
+        // Find min abs value
+        while(Math.abs(nums[l]) <= Math.abs(nums[r])) {
+            l++
+            r++
+        }
+        
+        while (0 <= l || r <= nums.lastIndex) {
+            // square l and r, place least square in newNums[newNumPos++]
+        }
+        
+        return newNums;
     }
 }
