@@ -476,8 +476,6 @@ class Solution {
 
 
 
-// import kotlin.math.*
-
 class Solution {
     fun sortedSquares(nums: IntArray): IntArray {
         if (nums.size == 1) {
@@ -490,35 +488,22 @@ class Solution {
         var r = 1
         var newNumPos = 0
         
-        // Find min abs value
         while(Math.abs(nums[r]) <= Math.abs(nums[l]) && r < newNums.lastIndex) {
             l++
             r++
         }
         
-        println("After first loop")
-        println("l: " + l)
-        println("r: " + r)
-        println("newNums: " + Arrays.toString(newNums))
-        println("\n")
-        
         while (0 <= l || r <= nums.lastIndex) {
-            // square l and r, place least square in newNums[newNumPos++]
             val lSquared = if (0 <= l) nums[l] * nums[l] else -1
             val rSquared = if (r <= nums.lastIndex) nums[r] * nums[r] else -1
             
-            if ((lSquared <= rSquared && lSquared > -1) || r < 0) {
+            if ((lSquared <= rSquared && lSquared > -1) || rSquared < 0) {
                 newNums[newNumPos++] = lSquared
                 l--
-            } else {
+            } else if ((rSquared < lSquared && rSquared > -1) || lSquared < 0) {
                 newNums[newNumPos++] = rSquared
                 r++
             }
-            
-            println("l: " + l)
-            println("r: " + r)
-            println("newNums: " + Arrays.toString(newNums))
-            println("\n")
         }
         
         return newNums;
