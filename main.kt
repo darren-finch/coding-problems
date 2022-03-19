@@ -509,3 +509,29 @@ class Solution {
         return newNums;
     }
 }
+
+
+
+class Solution {
+    fun rotate(nums: IntArray, k: Int): Unit {
+        if (nums.size == 1 || k == 0 || k % nums.size == 0) {
+            return
+        }
+        
+        var p1 = nums.size - (k % nums.size)
+        var p2 = 0
+        var newNums = IntArray(nums.size)
+        
+        while (p2 < newNums.size) {
+            newNums[p2++] = nums[p1++];
+            
+            if (p1 > nums.lastIndex) {
+                p1 = 0
+            }
+        }
+        
+        for (i in nums.indices) {
+            nums[i] = newNums[i]
+        }
+    }
+}
