@@ -535,3 +535,43 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun moveZeroes(nums: IntArray): Unit {
+        nums.sort()
+        
+        var l = 0
+        var r = firstNonZeroPos(nums)
+        
+        val noNonZeroPositionsFound = if (r < 0) true else false
+        if (noNonZeroPositionsFound) {
+            return
+        }
+        
+        while (r < nums.size) {
+            if (nums[l] == 0) {
+                swap(l, r, nums)
+            }
+            l++
+            r++
+        }
+    }
+    
+    fun swap(i: Int, j: Int, nums: IntArray) {
+        var temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+    }
+    
+    fun firstNonZeroPos(nums: IntArray): Int {
+        for (i in nums.indices) {
+            if (nums[i] != 0) {
+                return i
+            }
+        }
+        
+        return -1
+    }
+}
