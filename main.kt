@@ -575,3 +575,73 @@ class Solution {
         return -1
     }
 }
+
+
+
+class Solution {
+    fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
+        var i = 0
+        var j = 0
+        while (i < mat.size) {
+            while (j < mat[i].size) {
+                var curVertex = mat[i][j]
+                if (curVertex == 1) {
+                    
+                } else {
+                    mat[i][j] = 0
+                }
+            }
+        }
+        // Loop through vertices
+        // Is cur vertex = 1?
+        // yes:
+        // BFS to find closest zero, add distance to 0 to result matrix
+        // no:
+        // add 0 to result matrix
+    }
+    
+    private fun findDistanceToClosestZero(i: Int, j: Int, mat: Array<IntArray>): Int {
+        val queue = ArrayDequeue() // Elements will have i, j, and distance from start
+        var distanceFromStart = 0
+        queue.add(Node(mat[i][j], i, j, distanceFromStart))
+        while (!queue.isEmpty()) {
+            val nextVertex = queue.poll()
+            if (nextVertex.value == 0) {
+                return nextVertex.distanceFromStart
+            } else {
+                visitNeighbors(i, j, mat, queue, distanceFromStart)
+            }
+            
+        }
+    }
+    
+    private fun visitNeighbors(i: Int, j: Int, mat: Array<IntArray>, queue: ArrayDequeue, curDepth: Int) {
+        val left = i - 1
+        val right = i + 1
+        val up = j - 1
+        val down = j + 1
+        
+        if (left > -1) {
+            if (mat[left][j] == 1) {
+                queue.add(Node(mat[left][j], left, j, curDepth + 1, false))
+            }
+        }
+        if (right < mat[i].size) {
+            if (mat[right][j] == 1) {
+                queue.add(Node(mat[right][j], right, j, curDepth + 1, false))
+            }
+        }
+        if (up > -1) {
+            if (mat[i][up] == 1) {
+                queue.add(Node(mat[i][up], i, up, curDepth + 1, false))
+            }
+        }
+        if (down < mat.size) {
+            if (mat[i][down] == 1) {
+                queue.add(Node(mat[i][down], i, down, curDepth + 1, false))
+            }
+        }
+    }
+}
+
+data class Node(value: Int, i: Int, j: Int, distanceFromStart: Int, visited: Boolean)
