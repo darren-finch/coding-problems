@@ -578,70 +578,81 @@ class Solution {
 
 
 
+import java.util.LinkedList
+
 class Solution {
     fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
         var i = 0
         var j = 0
-        while (i < mat.size) {
-            while (j < mat[i].size) {
+        val newMat = mat.copyOf()
+        
+        for (i in mat.indices) {
+            for (j in mat[i].indices) {
                 var curVertex = mat[i][j]
                 if (curVertex == 1) {
-                    
+                    newMat[i][j] = getDistanceToClosestZero(i, j, mat)
                 } else {
-                    mat[i][j] = 0
+                    newMat[i][j] = 0
                 }
             }
         }
-        // Loop through vertices
-        // Is cur vertex = 1?
-        // yes:
-        // BFS to find closest zero, add distance to 0 to result matrix
-        // no:
-        // add 0 to result matrix
+        return newMat
     }
     
-    private fun findDistanceToClosestZero(i: Int, j: Int, mat: Array<IntArray>): Int {
-        val queue = ArrayDequeue() // Elements will have i, j, and distance from start
-        var distanceFromStart = 0
-        queue.add(Node(mat[i][j], i, j, distanceFromStart))
+    private fun getDistanceToClosestZero(i: Int, j: Int, mat: Array<IntArray>): Int {
+        val queue = LinkedList<Node>() // Elements will have i, j, and distance from start
+        val visitedMat = Array<IntArray>(mat.size, { i -> IntArray(mat[i].size, { j })})
+        
+        println(visitedMat.typeOf())
+        // for (i in visitedMat) {
+        //     for (j in visitedMat[i].indices) {
+        //         visitedMat[i][j] = 0
+        //     }
+        // }
+        
+        queue.add(Node(mat[i][j], i, j, 0))
+        
         while (!queue.isEmpty()) {
             val nextVertex = queue.poll()
-            if (nextVertex.value == 0) {
-                return nextVertex.distanceFromStart
-            } else {
-                visitNeighbors(i, j, mat, queue, distanceFromStart)
+            val nextVertexIsVisited = visitedMat[i][j] == 1
+            if (!nextVertexIsVisited) {
+                 if (nextVertex.value == 0) {
+                    return nextVertex.distanceFromStart
+                } else {
+                    visitedMat[i][j] = 1
+                    markNeighbors(i, j, mat, queue, nextVertex.distanceFromStart)
+                }   
             }
-            
         }
     }
     
-    private fun visitNeighbors(i: Int, j: Int, mat: Array<IntArray>, queue: ArrayDequeue, curDepth: Int) {
+    private fun markNeighbors(i: Int, j: Int, mat: Array<IntArray>, queue: ArrayDequeue, curDistanceFromStart: Int) {
         val left = i - 1
         val right = i + 1
         val up = j - 1
         val down = j + 1
         
         if (left > -1) {
-            if (mat[left][j] == 1) {
-                queue.add(Node(mat[left][j], left, j, curDepth + 1, false))
+            if (mat[i][left] == 1) {
+                queue.add(Node(mat[i][left], i, left, curDistanceFromStart + 1))
             }
         }
         if (right < mat[i].size) {
-            if (mat[right][j] == 1) {
-                queue.add(Node(mat[right][j], right, j, curDepth + 1, false))
+            if (mat[i][right] == 1) {
+                queue.add(Node(mat[i][right], i, right, curDistanceFromStart + 1))
             }
         }
         if (up > -1) {
-            if (mat[i][up] == 1) {
-                queue.add(Node(mat[i][up], i, up, curDepth + 1, false))
+            if (mat[up][j] == 1) {
+                queue.add(Node(mat[up][j], up, j, curDistanceFromStart + 1))
             }
         }
         if (down < mat.size) {
-            if (mat[i][down] == 1) {
-                queue.add(Node(mat[i][down], i, down, curDepth + 1, false))
+            if (mat[down][j] == 1) {
+                queue.add(Node(mat[down][j], down, j, curDistanceFromStart + 1))
             }
         }
     }
 }
 
-data class Node(value: Int, i: Int, j: Int, distanceFromStart: Int, visited: Boolean)
+data class Node(value: Int, i: Int, j: Int, distanceFromStart: Int)
