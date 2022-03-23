@@ -578,6 +578,7 @@ class Solution {
 
 
 
+// TIME LIMITED EXCEEDED IMPLEMENTATION
 import java.util.LinkedList
 
 class Solution {
@@ -600,59 +601,52 @@ class Solution {
     }
     
     private fun getDistanceToClosestZero(i: Int, j: Int, mat: Array<IntArray>): Int {
-        val queue = LinkedList<Node>() // Elements will have i, j, and distance from start
+        val queue = LinkedList<GraphNode>() // Elements will have i, j, and distance from start
         val visitedMat = Array<IntArray>(mat.size, { i -> IntArray(mat[i].size, { j })})
+        for (i in visitedMat.indices) {
+            for (j in visitedMat[i].indices) {
+                visitedMat[i][j] = 0
+            }
+        }
         
-        println(visitedMat.typeOf())
-        // for (i in visitedMat) {
-        //     for (j in visitedMat[i].indices) {
-        //         visitedMat[i][j] = 0
-        //     }
-        // }
-        
-        queue.add(Node(mat[i][j], i, j, 0))
+        queue.add(GraphNode(mat[i][j], i, j, 0))
         
         while (!queue.isEmpty()) {
             val nextVertex = queue.poll()
-            val nextVertexIsVisited = visitedMat[i][j] == 1
+            val nextVertexIsVisited = visitedMat[nextVertex.i][nextVertex.j] == 1
             if (!nextVertexIsVisited) {
                  if (nextVertex.value == 0) {
                     return nextVertex.distanceFromStart
                 } else {
-                    visitedMat[i][j] = 1
-                    markNeighbors(i, j, mat, queue, nextVertex.distanceFromStart)
-                }   
+                    visitedMat[nextVertex.i][nextVertex.j] = 1
+                    markNeighbors(nextVertex.i, nextVertex.j, mat, queue, nextVertex.distanceFromStart)
+                }
             }
         }
+        
+        // Shouldn't reach this line as there will always be at least one zero
+        return -1
     }
     
-    private fun markNeighbors(i: Int, j: Int, mat: Array<IntArray>, queue: ArrayDequeue, curDistanceFromStart: Int) {
-        val left = i - 1
-        val right = i + 1
-        val up = j - 1
-        val down = j + 1
+    private fun markNeighbors(i: Int, j: Int, mat: Array<IntArray>, queue: LinkedList<GraphNode>, curDistanceFromStart: Int) {
+        val up = i - 1
+        val down = i + 1
+        val left = j - 1
+        val right = j + 1
         
         if (left > -1) {
-            if (mat[i][left] == 1) {
-                queue.add(Node(mat[i][left], i, left, curDistanceFromStart + 1))
-            }
+            queue.add(GraphNode(mat[i][left], i, left, curDistanceFromStart + 1))
         }
         if (right < mat[i].size) {
-            if (mat[i][right] == 1) {
-                queue.add(Node(mat[i][right], i, right, curDistanceFromStart + 1))
-            }
+            queue.add(GraphNode(mat[i][right], i, right, curDistanceFromStart + 1))
         }
         if (up > -1) {
-            if (mat[up][j] == 1) {
-                queue.add(Node(mat[up][j], up, j, curDistanceFromStart + 1))
-            }
+            queue.add(GraphNode(mat[up][j], up, j, curDistanceFromStart + 1))
         }
         if (down < mat.size) {
-            if (mat[down][j] == 1) {
-                queue.add(Node(mat[down][j], down, j, curDistanceFromStart + 1))
-            }
+            queue.add(GraphNode(mat[down][j], down, j, curDistanceFromStart + 1))
         }
     }
 }
 
-data class Node(value: Int, i: Int, j: Int, distanceFromStart: Int)
+data class GraphNode(val value: Int, val i: Int, val j: Int, val distanceFromStart: Int)
