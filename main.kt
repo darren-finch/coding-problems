@@ -666,3 +666,23 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun reverseWords(s: String): String {
+        val sb = StringBuilder()
+        var p1 = 0
+        var p2 = 1
+        
+        while (p2 < s.length) {
+            if (s[p2] == ' ') {
+                sb.append(s.substring(p1, p2 + 1).reversed())
+                p1 = p2 + 1
+            }
+            p2++
+        }
+        
+        return sb.toString()
+    }
+}
