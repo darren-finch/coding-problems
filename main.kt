@@ -672,17 +672,16 @@ class Solution {
 class Solution {
     fun reverseWords(s: String): String {
         val sb = StringBuilder()
-        var p1 = 0
-        var p2 = 1
-        
-        while (p2 < s.length) {
-            if (s[p2] == ' ') {
-                sb.append(s.substring(p1, p2 + 1).reversed())
-                p1 = p2 + 1
+        val words = s.split(" ")
+        var index = 0
+        words.forEach {
+            if (index != words.lastIndex) {
+                sb.append(it.reversed() + " ")
+            } else {
+                sb.append(it.reversed())
             }
-            p2++
+            index++
         }
-        
         return sb.toString()
     }
 }
