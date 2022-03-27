@@ -685,3 +685,25 @@ class Solution {
         return sb.toString()
     }
 }
+
+
+
+// Another freaking rotate array implementation
+class Solution {
+    fun rotate(nums: IntArray, k: Int): Unit {
+        var p1 = nums.size - k
+        var p2 = 0
+        var newNums = IntArray(nums.size)
+        
+        while (p2 < nums.size) {
+            newNums[p2++] = nums[p1++]
+            if (nums.size <= p1) {
+                p1 = 0
+            }
+        }
+        
+        for (i in nums.indices) {
+            nums[i] = newNums[i]
+        }
+    }
+}
