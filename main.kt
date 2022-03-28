@@ -707,3 +707,26 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun moveZeroes(nums: IntArray): Unit {
+        var p1 = 0
+        var p2 = 0
+        
+        while (p2 < nums.size) {
+            if (nums[p2] != 0) {
+                swap(p1, p2, nums)
+                p1++
+            }
+            p2++
+        }
+    }
+    
+    fun swap(i: Int, j: Int, nums: IntArray) {
+        val temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+    }
+}
