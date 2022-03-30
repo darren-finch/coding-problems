@@ -771,3 +771,30 @@ class Solution {
         return -1
     }
 }
+
+
+
+// Very suboptimal O(k*n) solution
+class Solution {
+    fun rotate(nums: IntArray, k: Int): Unit {
+        if (nums.size < 2 || k == 0) {
+            return
+        }
+        
+        for (rotation in 1..k) {
+            shiftRight(nums)
+        }
+    }
+    
+    private fun shiftRight(nums: IntArray) {
+        for (i in (nums.lastIndex) downTo 1) {
+            swap(nums, i, i-1)
+        }
+    }
+    
+    private fun swap(nums: IntArray, i: Int, j: Int) {
+        val temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+    }
+}
