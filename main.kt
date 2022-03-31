@@ -798,3 +798,33 @@ class Solution {
         nums[j] = temp
     }
 }
+
+
+
+// Middle node
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun middleNode(head: ListNode?): ListNode? {
+        var i = 1
+        var p1 = head
+        var p2 = head
+        
+        while(p2 != null) {
+            if (i % 2 == 0) {
+                p1 = p1?.next
+            }
+            i++
+            p2 = p2?.next
+        }
+        
+        return p1
+    }
+}
