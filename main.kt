@@ -828,3 +828,14 @@ class Solution {
         return p1
     }
 }
+
+
+
+// WIP: Codewars kata
+package twotoone
+
+fun longest(s1:String, s2:String):String {
+    var charArray = charArrayOf()
+    StringBuilder().append(s1).append(s2).toCharArray(charArray)
+    return charArray.distinct().toString().reversed()
+}
