@@ -842,34 +842,11 @@ fun longest(s1:String, s2:String):String {
 
 
 
-// Clean up compiler errors
+import kotlin.math.*;
+
 class Solution {
     // you need treat n as an unsigned value
     fun reverseBits(n:Int):Int {
-        // 1. Parse int into binary in reverse (represented by CharArray)
-        // 2. Parse array back into int
-        return binaryToInt(intToBinary(n))
-    }
-    
-    // Takes little-endian and makes it big-endian, that's really the core of the entire algorithm
-    private fun intToBinary(n: Int): CharArray {
-        var remainder = n
-        val ans = CharArray(32, { it -> '0'})
-        
-        do {
-            val nextPowerOf2UnderRemainder = Math.log(remainder.toDouble(), 2).toInt()
-            ans[nextPowerOf2UnderRemainder] = '1'
-            remainder -= 2.pow(nextPowerOf2UnderRemainder).toInt()
-        } while (remainder > 1)
-        
-        return ans
-    }
-    
-    private fun binaryToInt(n: CharArray): Int {
-        var sum = 0
-        for (i in n.indices) {
-            sum += if (n[i] == '1') 2.pow(i) else 0
-        }
-        return sum
+        return Integer.reverse(n)
     }
 }
