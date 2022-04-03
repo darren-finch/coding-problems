@@ -839,3 +839,13 @@ fun longest(s1:String, s2:String):String {
     StringBuilder().append(s1).append(s2).toCharArray(charArray)
     return charArray.distinct().toString().reversed()
 }
+
+
+
+class Solution {
+    // you need treat n as an unsigned value
+    fun reverseBits(n:Int):Int {
+        // Think I need to turn int into bits then reverse bits and turn it back into int
+        return n.toString().reversed().toInt()
+    }
+}
