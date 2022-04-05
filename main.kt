@@ -850,3 +850,19 @@ class Solution {
         return Integer.reverse(n)
     }
 }
+
+
+
+class Solution {
+    fun containsDuplicate(nums: IntArray): Boolean {
+        val seen = hashSetOf<Int>()
+        for (num in nums) {
+            if (seen.contains(num)) {
+                return true
+            } else {
+                seen.add(num)
+            }
+        }
+        return false
+    }
+}
