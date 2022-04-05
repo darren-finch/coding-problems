@@ -866,3 +866,35 @@ class Solution {
         return false
     }
 }
+
+
+
+// TODO: Debug, currently getting wrong answer
+class Solution {
+    fun maxArea(height: IntArray): Int {
+        // Had to have some hints but here we go
+        var p1 = 0
+        var p2 = height.lastIndex
+        var maxArea = 0
+        
+        while (p1 < p2) {
+            if (height[p1+1] > height[p1]) {
+                p1++
+                maxArea = calcArea(p1, p2, height)
+            }
+            else if (height[p2-1] > height[p2]) {
+                p2--
+                maxArea = calcArea(p1, p2, height)
+            }
+            else {
+                break
+            }
+        }
+        
+        return maxArea
+    }
+    
+    private fun calcArea(p1: Int, p2: Int, height: IntArray): Int {
+        return Math.abs(p2 - p1) * Math.max(height[p1], height[p2])
+    }
+}
