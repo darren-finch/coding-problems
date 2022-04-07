@@ -898,3 +898,27 @@ class Solution {
         return Math.abs(p2 - p1) * Math.max(height[p1], height[p2])
     }
 }
+
+
+
+// Faster solution to twoSum
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+        var p1 = 0
+        var p2 = nums.lastIndex
+
+        while (p1 < p2) {
+            val sum = nums[p1] + nums[p2]
+            if (sum == target) {
+                return intArrayOf(p1 + 1, p2 + 1)
+            } else if (sum < target) {
+                p1++
+            } else {
+                p2--
+            }
+        }
+        
+        // Shouldn't reach here because exactly one solution
+        return intArrayOf(-1, -1)
+    }
+}
