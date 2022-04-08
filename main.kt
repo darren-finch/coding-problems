@@ -922,3 +922,30 @@ class Solution {
         return intArrayOf(-1, -1)
     }
 }
+
+
+
+// maxArea optimal solution (had to look at answer for this one, still need to understand it better).
+class Solution {
+    fun maxArea(height: IntArray): Int {
+        // Had to look at solution for this one
+        var l = 0
+        var r = height.lastIndex
+        var maxArea = 0
+        
+        while (l < r) {
+            maxArea = Math.max(maxArea, calcArea(l, r, height))
+            if (height[l] < height[r]) {
+                l++
+            } else {
+                r--
+            }
+        }
+        
+        return maxArea
+    }
+    
+    private fun calcArea(l: Int, r: Int, height: IntArray): Int {
+        return Math.abs(r - l) * Math.min(height[l], height[r])
+    }
+}
