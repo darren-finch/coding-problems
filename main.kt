@@ -949,3 +949,22 @@ class Solution {
         return Math.abs(r - l) * Math.min(height[l], height[r])
     }
 }
+
+
+
+// Recursive In-order traversal
+class Solution {
+    fun inorderTraversal(root: TreeNode?): List<Int> {
+        val ans = mutableListOf<Int>()
+        traverse(root, ans)
+        return ans
+    }
+    
+    private fun traverse(root: TreeNode?, ans: MutableList<Int>) {
+        if (root == null) return
+        
+        traverse(root!!.left, ans)
+        ans.add(root!!.`val`)
+        traverse(root!!.right, ans)
+    }
+}
