@@ -968,3 +968,61 @@ class Solution {
         traverse(root!!.right, ans)
     }
 }
+
+
+
+// Terrible mess... will work on it later hopefully
+import java.util.LinkedList
+
+class Solution {
+    fun isValid(s: String): Boolean {
+        if (s.length % 2 != 0) {
+            return false
+        }
+        // There are just two conditions we need to check
+        // to make sure that each parentheses is closed in the right order
+        // 1. Each open char must be closed.
+        // 2. There cannot be an open char with a closed char of a different type immediately after
+        var openParentheses = 0
+        var openBraces = 0
+        var openBrackets = 0
+        for (i in 0..s.lastIndex) {
+            val character = s[i]
+            
+            // 1. Make sure each char is matched
+            when (character) {
+                '(' -> openParentheses++
+                '{' -> openBraces++
+                '[' -> openBrackets++
+                ')' -> openParentheses--
+                '}' -> openBraces--
+                ']' -> openBrackets--
+            }
+            
+            // 2. Make sure each char is closed in correct order
+            if (i < s.lastIndex - 1) {
+                val nextCharacter = s[i + 1]
+                // Because the string only consists of parentheses, I can do this
+                val ans = isNextCharInOrder(character, nextCharacter)
+                println(ans)
+                if (!ans) return false
+            }
+        }
+        
+        return openParentheses == 0 && openBraces == 0 && openBrackets == 0
+    }
+    
+    private fun isOpen(character: Char) = (character == '(' || character == '{' || character == '[')
+    private fun inverseOf(character: Char): Char {
+        return when (character) {
+            '(' -> ')'
+            '{' -> '}'
+            '[' -> ']'
+            ')' -> '('
+            '}' -> '{'
+            ']' -> '['
+            else -> ' '
+        }
+    }
+    private fun isNextCharInOrder(character: Char, nextCharacter: Char) = (isOpen(nextCharacter) || nextCharacter == inverseOf(character))
+}
