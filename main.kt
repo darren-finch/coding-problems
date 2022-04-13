@@ -1026,3 +1026,28 @@ class Solution {
     }
     private fun isNextCharInOrder(character: Char, nextCharacter: Char) = (isOpen(nextCharacter) || nextCharacter == inverseOf(character))
 }
+
+
+
+// Beginning stages of solution
+class Solution {
+    fun lengthOfLongestSubstring(s: String): Int {
+        // Initial solution
+        // 3 vars: curSubstringLength, maxSubstringLength, and curSubstring (hash set)
+        var curSubstringLength = 0
+        var maxSubstringLength = 0
+        var curSubstring = hashSetOf<Char>()
+        
+        for (i in 0..s.length) {
+            if (!curSubstring.contains(s[i])) {
+
+            } else {
+                if (maxSubstringLength < curSubstringLength) {
+                    maxSubstringLength = curSubstringLength
+                }
+                curSubstring.clear()
+            }
+
+        }
+    }
+}
