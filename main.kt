@@ -1051,3 +1051,33 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    fun validPalindrome(s: String): Boolean {
+        if (s.length == 1) return true
+        if (s.length == 2) return s[0] == s[1]
+        var p1 = 0
+        var p2 = s.length - 1
+        
+        while (p1 < p2) {
+            var char1 = s[p1]
+            var char2 = s[p2]
+            if (char1 != char2) {
+                if (p1 == p2 - 1) {
+                    return true
+                } else if (s[p1 + 1] == s[p2] || s[p2 - 1] == s[p1]) {
+                    return true
+                }
+            }
+            p1++
+            p2--
+        }
+        
+        return true
+        // If s is palindrome ret true
+        // If s is not palindrome but at most one char can be removed to make it a palindrome, ret true
+        // If s is not palindrome and no single char can be removed to make it a palindrome, ret false
+    }
+}
