@@ -1081,3 +1081,34 @@ class Solution {
         // If s is not palindrome and no single char can be removed to make it a palindrome, ret false
     }
 }
+
+
+
+// TOO TIRED
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun deleteDuplicates(head: ListNode?): ListNode? {
+        val seen = hashSetOf<Char>()
+        var p1 = head
+        while (p1 != null) {
+            if (seen.contains(p1.`val`)) {
+                var next = p1!!.next
+                p1!!.next = p1?.next?.next
+                p1 = next
+            } else {
+                seen.add(p1.`val`)
+                p1 = p1?.next
+            }
+        }
+        
+        return head
+    }
+}
