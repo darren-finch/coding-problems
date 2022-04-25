@@ -1136,3 +1136,22 @@ class Solution {
         return root1
     }
 }
+
+
+
+// maxSubArray WIP
+class Solution {
+    fun maxSubArray(nums: IntArray): Int {
+        var maxSum = nums[0]
+        var curSum = 0
+        for (i in nums.indices) {
+            curSum += nums[i]
+            if (maxSum < curSum) {
+                maxSum = curSum
+            } else if (curSum < 0) {
+                curSum = 0
+            }
+        }
+        return maxSum
+    }
+}
