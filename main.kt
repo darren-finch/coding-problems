@@ -1155,3 +1155,23 @@ class Solution {
         return maxSum
     }
 }
+
+
+
+//maxSubArray - kadane's algo variation
+class Solution {
+    fun maxSubArray(nums: IntArray): Int {
+        var maxSum = nums[0]
+        var curSum = 0
+        for (i in nums.indices) {
+            curSum += nums[i]
+            if (maxSum < curSum) {
+                maxSum = curSum
+            }
+            if (curSum < 0) {
+                curSum = 0
+            }
+        }
+        return maxSum
+    }
+}
