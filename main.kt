@@ -1175,3 +1175,27 @@ class Solution {
         return maxSum
     }
 }
+
+
+
+// addBinary WIP
+class Solution {
+    fun addBinary(a: String, b: String): String {
+        var p1 = 0
+        var p2 = 0
+        var carry = 0
+        
+        while (p1 < a.length || p2 < b.length) {
+            if (p1 < a.length && p2 < b.length) {
+                
+            }
+        }
+    }
+    
+    fun addBinaryChars(a: Char, b: Char): CharArray {
+        when (a) {
+            '0' -> return if (b == '0') charArrayOf('0', '0') else charArrayOf('1','0')
+            '1' -> return if (b == '0') charArrayOf('1', '0') else charArrayOf('1','1')
+        }
+    }
+}
