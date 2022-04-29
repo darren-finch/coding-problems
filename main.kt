@@ -1199,3 +1199,45 @@ class Solution {
         }
     }
 }
+
+
+
+// TOO TIRED
+class Solution {
+    fun addBinary(a: String, b: String): String {
+        var p1 = a.lastIndex
+        var p2 = b.lastIndex
+        var carry = '0'
+        var sb = StringBuilder()
+        
+        while (p1 > 0 || p2 > 0) {
+            var digitA = if (p1 > 0) {
+                p1--
+                a[p1]
+            } else {
+                '0'
+            }
+            var digitB = if (p2 > 0) {
+                p2--
+                b[p2]
+            } else {
+                '0'
+            }
+            var resultA = addBinaryChars(digitA, digitB)
+            var resultB = addBinaryChars(resultA[0], carry)
+            sb.append(resultB[0])
+            carry = resultB[1]
+        }
+        
+        return sb.reverse().toString()
+    }
+    
+    fun addBinaryChars(a: Char, b: Char): CharArray {
+        // Returns tuple of output digit and carry value
+        return when (a) {
+            '0' -> if (b == '0') charArrayOf('0', '0') else charArrayOf('1','0')
+            '1' -> if (b == '0') charArrayOf('1', '0') else charArrayOf('0','1')
+            else -> charArrayOf('0', '0')
+        }
+    }
+}
