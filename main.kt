@@ -1241,3 +1241,26 @@ class Solution {
         }
     }
 }
+
+
+
+// addBinary WIP 2
+class Solution {
+    fun addBinary(a: String, b: String): String {
+        var p1 = a.lastIndex
+        var p2 = b.lastIndex
+        var sb = StringBuilder()
+        
+        var carry = 0
+        while (p1 > 0 || p2 > 0 || carry > 0) {
+            var digitA = if (p1 > 0) a[p1 + 1].toInt() else 0
+            var digitB = if (p2 > 0) b[p2 + 1].toInt() else 0
+        
+            var res = digitA + digitB + carry
+            sb.append(res % 2)
+            carry = // IDK
+        }
+        
+        return sb.reverse().toString()
+    }
+}
