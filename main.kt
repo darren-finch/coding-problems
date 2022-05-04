@@ -1264,3 +1264,30 @@ class Solution {
         return sb.reverse().toString()
     }
 }
+
+
+
+// Two sum WIP
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+        val sortedNums = nums.sorted()
+        var p1 = 0
+        var p2 = nums.lastIndex
+        
+        while (p1 < p2) {
+            var sum = nums[p1] + nums[p2]
+            
+            if (sum == target) {
+                return intArrayOf(p1, p2)
+            }
+            
+            if (sum < target) {
+                p1++
+            } else {
+                p2--
+            }
+        }
+        
+        return intArrayOf(p1, p2)
+    }
+}
