@@ -1291,3 +1291,16 @@ class Solution {
         return intArrayOf(p1, p2)
     }
 }
+
+
+
+class Solution {
+    // Would probably be a good place for a trie data structure
+    fun longestCommonPrefix(strs: Array<String>): String {
+        var stringPos = 0
+        var longestCommonPrefix = ""
+        while (true) {
+            var curChar = strs[]
+        }
+    }
+}
