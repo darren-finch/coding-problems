@@ -1299,7 +1299,9 @@ class Solution {
     fun longestCommonPrefix(strs: Array<String>): String {
         var stringPos = 0
         var longestCommonPrefix = ""
-        while (true) {
+        var i = 0
+
+        while (strs[i].length < ) {
             var curChar = strs[]
         }
     }
