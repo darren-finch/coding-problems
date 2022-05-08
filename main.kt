@@ -1298,11 +1298,20 @@ class Solution {
     // Would probably be a good place for a trie data structure
     fun longestCommonPrefix(strs: Array<String>): String {
         var stringPos = 0
-        var longestCommonPrefix = ""
         var i = 0
+        var longestCommonPrefix = StringBuilder()
+        var lastChar = strs[i][stringPos]
 
-        while (strs[i].length < ) {
-            var curChar = strs[]
+        // The second we hit the end of a word or the prefix differs, return
+        while (stringPos < strs[i].size || strs[i][stringPos] != lastChar) {
+            lastChar = strs[i][stringPos]
+            i++
+            if (strs.size <= i) {
+                longestCommonPrefix.append(lastChar)
+                stringPos++
+                i = 0
+            }
         }
+        return longestCommonPrefix.toString()
     }
 }
