@@ -1294,22 +1294,27 @@ class Solution {
 
 
 
+// Working solution for longest prefix problem
 class Solution {
     // Would probably be a good place for a trie data structure
     fun longestCommonPrefix(strs: Array<String>): String {
+        if (strs.isEmpty() || strs[0].isEmpty()) return ""
+        
         var stringPos = 0
         var i = 0
         var longestCommonPrefix = StringBuilder()
         var lastChar = strs[i][stringPos]
 
         // The second we hit the end of a word or the prefix differs, return
-        while (stringPos < strs[i].size || strs[i][stringPos] != lastChar) {
+        while (stringPos < strs[i].length && strs[i][stringPos] == lastChar) {
             lastChar = strs[i][stringPos]
             i++
             if (strs.size <= i) {
                 longestCommonPrefix.append(lastChar)
                 stringPos++
                 i = 0
+                if (stringPos < strs[i].length)
+                    lastChar = strs[i][stringPos]
             }
         }
         return longestCommonPrefix.toString()
