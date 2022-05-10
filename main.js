@@ -23,3 +23,9 @@ const rps = (p1, p2) => {
 			return "Player 2 won!";
 	}
 };
+
+
+
+function plural(n) {
+	return true
+  }
