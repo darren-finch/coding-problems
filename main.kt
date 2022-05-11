@@ -1331,15 +1331,7 @@ class Solution {
         // 2. Loop through each array and somehow figure out 
         //    how to replace the elements such that each permutation shows up.
         // 3. Currently I understand how many elements need to be allocated but I don't understand how.
-        
-        // Other method
-        // Mathmatically determine how many 
-        // [1, 2, 3, 4]
-        // [1, 2, 4, 3]
-        // [1, 3, 2, 4]
-        // [1, 3, 4, 2]
-        // [1, 4, 2, 3]
-        // [1, 4, 3, 2]
+
         val newNums = Array<IntArray>(factorial(nums.size)) { permutation -> IntArray(nums.size, {0})}
         for (num in nums) {
             
