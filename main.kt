@@ -1320,3 +1320,36 @@ class Solution {
         return longestCommonPrefix.toString()
     }
 }
+
+
+
+class Solution {
+    fun permute(nums: IntArray): List<List<Int>> {
+        // Brute force method:
+        // Generate all possible permutations:
+        // 1. Allocate an array of size n! that stores arrays that are n long
+        // 2. Loop through each array and somehow figure out 
+        //    how to replace the elements such that each permutation shows up.
+        // 3. Currently I understand how many elements need to be allocated but I don't understand how.
+        
+        // Other method
+        // Mathmatically determine how many 
+        // [1, 2, 3, 4]
+        // [1, 2, 4, 3]
+        // [1, 3, 2, 4]
+        // [1, 3, 4, 2]
+        // [1, 4, 2, 3]
+        // [1, 4, 3, 2]
+        val newNums = Array<IntArray>(factorial(nums.size)) { permutation -> IntArray(nums.size, {0})}
+        for (num in nums) {
+            
+        }
+    }
+    
+    fun factorial(num: Int): Int {
+        var result = 1
+        for (i in 2..num) result *= i
+        return result
+    }
+
+}
