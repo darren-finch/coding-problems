@@ -7,13 +7,13 @@ class Solution:
         
         for i in range(len(nums)):
             n = nums.pop(i)
+            print(nums)
             perms = self.permute(nums)
             for perm in perms:
-                print(perm)
                 perm.append(n)
-                
+            
             nums.append(n)
-            result.extend(nums)
+            result.extend(perms)
             
         return result
         
