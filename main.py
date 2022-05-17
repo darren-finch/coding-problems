@@ -16,3 +16,22 @@ class Solution:
             result.extend(perms)
             
         return result
+
+
+
+# Too sleepy to remove element
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        p1 = 0
+        p2 = 0
+        k = 0
+        
+        while p1 < len(nums) and p2 < len(nums):
+            if val == nums[p2]:
+                nums[p1] = val
+                val = nums[p2]
+                p1 += 1
+                k += 1
+            p2 += 1
+                
+        return k
