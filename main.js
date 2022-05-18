@@ -29,3 +29,20 @@ const rps = (p1, p2) => {
 function plural(n) {
 	return true
   }
+
+
+
+function sumOfN(n) {
+	var curSum = 0
+	var result = []
+	
+	for (var i = 0; i <= Math.abs(n); i++) {
+	  if (n > 0)
+		curSum += i
+	  else
+		curSum -= i
+	  result.push(curSum)
+	}
+	
+	return result
+  };
