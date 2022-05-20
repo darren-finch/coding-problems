@@ -46,3 +46,16 @@ function sumOfN(n) {
 	
 	return result
   };
+
+
+
+  function toCamelCase(str){
+  var strings = str.split(/(-_)+/);
+  var result = ""
+  for (var i = 0; i < strings.length; i++) {
+    const curStr = strings[i].replace(/(-_)+/)
+    if (curStr.length > 1)
+      strings[i] = curStr.substr(0, 1).toUpperCase() + curStr.substr(0, curStr.length - 1);
+  }
+  return strings.reduce((prevVal, curVal) => prevVal + curVal, "");
+}
