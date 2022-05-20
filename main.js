@@ -49,13 +49,18 @@ function sumOfN(n) {
 
 
 
-  function toCamelCase(str){
-  var strings = str.split(/(-_)+/);
-  var result = ""
-  for (var i = 0; i < strings.length; i++) {
-    const curStr = strings[i].replace(/(-_)+/)
-    if (curStr.length > 1)
-      strings[i] = curStr.substr(0, 1).toUpperCase() + curStr.substr(0, curStr.length - 1);
-  }
-  return strings.reduce((prevVal, curVal) => prevVal + curVal, "");
+function toCamelCase(str){
+	var strings = str.split('-').join('_').split('_');
+	var result = "";
+	for (var i = 0; i < strings.length; i++) {
+		const curStr = strings[i];
+		if (i > 0) {
+		strings[i] = replaceAtIndex(curStr, 0, curStr[0].toUpperCase());
+		}
+	}
+	return strings.reduce((prevVal, curVal) => prevVal + curVal, "");
+}
+
+function replaceAtIndex(str, index, replacement) {
+	return str.substring(0, index) + replacement + str.substring(index + replacement.length);
 }
