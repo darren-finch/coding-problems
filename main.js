@@ -64,3 +64,19 @@ function toCamelCase(str){
 function replaceAtIndex(str, index, replacement) {
 	return str.substring(0, index) + replacement + str.substring(index + replacement.length);
 }
+
+
+
+function montyHall(correctDoorNumber, participantGuesses) {
+	var wins = 0;
+	for (var i = 0; i < participantGuesses.length; i++) {
+	  const participantGuess = participantGuesses[i];
+	  const otherDoor = Math.min(Math.max(6 - (correctDoorNumber + participantGuess), 1), 3);
+	  const doorToSwitchTo = Math.min(Math.max(6 - (otherDoor + participantGuess), 1), 3);
+	  if (doorToSwitchTo == correctDoorNumber) {
+		wins++
+	  }
+	}
+	
+	return Math.trunc((wins / participantGuesses.length) * 100)
+  }
