@@ -67,6 +67,8 @@ function replaceAtIndex(str, index, replacement) {
 
 
 
+
+// WIP 2
 function montyHall(correctDoorNumber, participantGuesses) {
 	var wins = 0;
 	for (var i = 0; i < participantGuesses.length; i++) {
@@ -78,5 +80,5 @@ function montyHall(correctDoorNumber, participantGuesses) {
 	  }
 	}
 	
-	return Math.trunc((wins / participantGuesses.length) * 100)
+	return Math.ceil((wins / participantGuesses.length) * 100)
   }
