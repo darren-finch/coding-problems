@@ -82,3 +82,8 @@ function montyHall(correctDoorNumber, participantGuesses) {
 	
 	return Math.ceil((wins / participantGuesses.length) * 100)
   }
+
+
+function helloWorld() {
+    console.log("Hello World! On my iPhone. Still committed code today!")
+}
