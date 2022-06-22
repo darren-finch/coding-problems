@@ -84,7 +84,6 @@ function montyHall(correctDoorNumber, participantGuesses) {
   }
 
 
-<<<<<<< HEAD
 
 // Binary search off the top
   /**
@@ -111,8 +110,26 @@ var search = function(nums, target) {
     
     return -1
 };
-=======
-function helloWorld() {
-    console.log("Hello World! On my iPhone. Still committed code today!")
-}
->>>>>>> 3ea0d28b73f6b235668beb7fe69bde5b28bbc67e
+
+
+
+// Pivot search
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var pivotIndex = function(nums) {
+    var totalSum = 0;
+    for (var i = 0; i < nums.length; i++) {
+        totalSum += nums[i]
+    }
+    
+    var runningSum = 0;
+    for (var i = 0; i < nums.length; i++) {
+        runningSum += nums[i];
+        if ((runningSum - nums[i]) == (totalSum - runningSum)) {
+            return i;
+        }
+    }
+    return -1;
+};
