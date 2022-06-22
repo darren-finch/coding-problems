@@ -84,6 +84,7 @@ function montyHall(correctDoorNumber, participantGuesses) {
   }
 
 
+<<<<<<< HEAD
 
 // Binary search off the top
   /**
@@ -110,3 +111,8 @@ var search = function(nums, target) {
     
     return -1
 };
+=======
+function helloWorld() {
+    console.log("Hello World! On my iPhone. Still committed code today!")
+}
+>>>>>>> 3ea0d28b73f6b235668beb7fe69bde5b28bbc67e
