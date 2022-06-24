@@ -1343,5 +1343,43 @@ class Solution {
         for (i in 2..num) result *= i
         return result
     }
+}
 
+
+
+// WIP: isIsomorphic
+class Solution {
+    fun isIsomorphic(s: String, t: String): Boolean {
+        
+        // Loop through s
+        // Put each mapping from t -> s in a hashmap
+        // If we see two characters that are not the same across s and t
+        //      If we have seen the character in t before, 
+        //      but it was mapped to another character than the character we are on in s,
+        //      then return false
+        //      
+        //      Else, replace all instances of the character in s with the character in t
+        // Return whether s == t
+        
+        
+        var sCopy = s
+        var seenCharMappings = hashMapOf<Char,Char>()
+        var p1 = 0
+        var p2 = 0
+        while (p1 < s.length && p2 < t.length) {
+            var sChar = s[p1]
+            var tChar = t[p2]
+            if (seenCharMappings.containsKey(tChar)) {
+                if (seenCharMappings[tChar] != sChar) {
+                    return false
+                }
+            }
+            sCopy = sCopy.replace(sChar, tChar)
+            seenCharMappings.put(tChar, sChar)
+            p1++
+            p2++
+        }
+        
+        return sCopy == t
+    }
 }
