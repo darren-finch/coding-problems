@@ -133,3 +133,25 @@ var search = function(nums, target) {
     }
     return -1;
 };
+
+
+
+function buildString(...template){
+	return `I like ${template.join(', ')}!`;
+  }
+
+
+
+  function isPangram(str){
+	let alphabetArr = [];
+	for (let i = 0; i < str.length; i++) {
+	  const charCode = str.charCodeAt(i)
+	  if (isLetter(charCode)) {
+		
+	  }
+	}
+  }
+	
+  function isLetter(charCode) {
+	return (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)
+  }
