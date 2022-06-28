@@ -155,3 +155,16 @@ function buildString(...template){
   function isLetter(charCode) {
 	return (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)
   }
+
+  String.prototype.toJadenCase = function () {
+	let words = this.split(" ")
+	let res = ""
+	for (let i = 0; i < words.length; i++) {
+	  let word = words[i]
+	  if (i > 0) {
+		res += " "
+	  }
+	  res += word.substring(0, 1).toUpperCase() + word.substring(1, word.length)
+	}
+	return res
+  };
