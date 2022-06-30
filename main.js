@@ -168,3 +168,36 @@ function buildString(...template){
 	}
 	return res
   };
+
+
+
+  /**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+var binaryTreePaths = function(root) {
+    if (root == null) {
+        return
+    }
+    
+    let pathsList = []
+    let rootIsLeafNode = (root.left == null && root.right == null)
+    if (rootIsLeafNode) {
+        pathsList.push(root.val.toString())
+    } else {
+        pathsList.concat(binaryTreePaths(root.left), binaryTreePaths(root.right))
+        for (let i = 0; i < pathsList.length; i++) {
+            pathsList[i] = root.val.toString() + "->" + pathsList[i].toString()
+        }
+    }
+    
+    return pathsList
+};
