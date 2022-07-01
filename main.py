@@ -75,3 +75,31 @@ class Solution:
                 l = mid
 
         return -1
+
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def binaryTreePaths(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[str]
+        """
+        if root == None:
+            return []
+        
+        pathsList = []
+        rootIsLeaf = root.left == None and root.right == None
+        if rootIsLeaf:
+            pathsList = [str(root.val)]
+        else:
+            pathsList = self.binaryTreePaths(root.left) + self.binaryTreePaths(root.right)
+            for i in range(len(pathsList)):
+                pathsList[i] = str(root.val) + "->" + pathsList[i]
+                
+        return pathsList
