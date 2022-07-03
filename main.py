@@ -103,3 +103,15 @@ class Solution(object):
                 pathsList[i] = str(root.val) + "->" + pathsList[i]
                 
         return pathsList
+
+
+
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        
