@@ -114,4 +114,30 @@ class Solution(object):
         """
         if len(nums) < 3:
             return []
-        
+
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        # leftPointer = largest value to left of middle, rightPointer = largest value to right of middle
+        middleIndex = (len(nums) - 1) / 2
+        middle = nums[middleIndex]
+        left = nums[middleIndex - 1]
+        right = nums[len(nums) - 1]
+
+    
+    def traverseArray(self, nums, tree, left, right):
+        middleIndex = (left + right) / 2
+        middle = nums[middleIndex]
+        left = nums[middleIndex - 1]
+        right = nums[right - 1]
