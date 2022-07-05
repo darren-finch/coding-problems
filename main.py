@@ -141,3 +141,26 @@ class Solution(object):
         middle = nums[middleIndex]
         left = nums[middleIndex - 1]
         right = nums[right - 1]
+
+
+
+class Solution(object):
+    solutions = []
+    potentialSolution = []
+    def change(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+        """
+        for coinAmt in coins:
+            balance = amount - coinAmt
+            if balance == 0:
+                if potentialSolution not in solutions:
+                    solutions += potentialSolution
+            elif balance < 0:
+                potentialSolution.append(balance)
+                change(balance, coins)
+            
+            
+        return len(solutions)
