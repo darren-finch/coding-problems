@@ -144,6 +144,7 @@ class Solution(object):
 
 
 
+
 class Solution(object):
     solutions = []
     potentialSolution = []
@@ -158,9 +159,23 @@ class Solution(object):
             if balance == 0:
                 if potentialSolution not in solutions:
                     solutions += potentialSolution
-            elif balance < 0:
-                potentialSolution.append(balance)
+            elif balance > 0:
                 change(balance, coins)
             
             
         return len(solutions)
+
+
+
+class Solution(object):
+    
+    def change(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+        """
+        if amount == 0:
+            return 1
+        if len(coins) == 0:
+            return 0
