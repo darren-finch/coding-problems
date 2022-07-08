@@ -195,3 +195,15 @@ class Solution(object):
             return ((high - low + 1) / 2) + 1
         
         return ((high - low + 1) / 2)
+
+
+
+def matrix_addition(a, b):
+    # your code here
+    n = len(a)
+    result = [[]]
+    for i in range(n):
+        for j in range(n):
+            result[i][j] = a[i][j] + b[i][j]
+            
+    return result
