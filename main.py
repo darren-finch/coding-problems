@@ -207,3 +207,17 @@ def matrix_addition(a, b):
             result[i][j] = a[i][j] + b[i][j]
             
     return result
+
+
+
+class Solution(object):
+def removeElement(self, nums, val):
+    """
+    :type nums: List[int]
+    :type val: int
+    :rtype: int
+    """
+    p1 = 0
+    p2 = 1
+    for num in nums:
+        if num != val:
