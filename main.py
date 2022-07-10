@@ -221,3 +221,33 @@ def removeElement(self, nums, val):
     p2 = 1
     for num in nums:
         if num != val:
+
+
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        # loop thru arr
+        # Look at same char index for all elements in arr
+        # if char index out of range or current char is different than the ones in this round so far, break
+        # increase char index
+        
+        ans = ""
+        charIndex = 0
+        stop = false
+        
+        while(true):
+            curChar = strs[0][charIndex]
+            for (word in strs):
+                if (charIndex > len(word) - 1 or word[charIndex] != curChar):
+                    stop = true
+                    break
+            if (stop)
+                break
+            charIndex += 1
+            ans += curChar
+        
+        return ans
