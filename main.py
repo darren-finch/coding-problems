@@ -251,3 +251,31 @@ class Solution(object):
             ans += curChar
         
         return ans
+
+
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        # loop thru arr
+        # Look at same char index for all elements in arr
+        # if char index out of range or current char is different than the ones in this round so far, break
+        # increase char index
+        if len(strs) < 1 or len(strs[0]) < 1:
+            return ""
+        
+        ans = ""
+        charIndex = 0
+        
+        while(charIndex < len(strs[0])):
+            curChar = strs[0][charIndex]
+            for word in strs:
+                if charIndex > len(word) - 1 or word[charIndex] != curChar:
+                    return ans
+            charIndex += 1
+            ans += curChar
+        
+        return ans
