@@ -279,3 +279,17 @@ class Solution(object):
             ans += curChar
         
         return ans
+
+
+
+class Solution(object):
+    def makesquare(self, matchsticks):
+        """
+        :type matchsticks: List[int]
+        :rtype: bool
+        """
+        # Algorithm:
+        # The goal is to divide the array into equal quarters
+        # Sum the array and divide that by 4. That is your length target. If this is a decimal, throw the thing out.
+        # When you get done with the algorithm, you want to see an array with 4 elements of equal length. I think.
+        return True
