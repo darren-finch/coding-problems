@@ -293,3 +293,21 @@ class Solution(object):
         # Sum the array and divide that by 4. That is your length target. If this is a decimal, throw the thing out.
         # When you get done with the algorithm, you want to see an array with 4 elements of equal length. I think.
         return True
+
+
+
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0:
+            return false
+        
+        return str(x).reverse()
+    def reverse(self, s):
+        lenth = len(s)
+        charIndex = len(s) - 1
+        while charIndex > 0:
+            s[len() - i]
