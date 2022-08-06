@@ -311,3 +311,6 @@ class Solution(object):
         charIndex = len(s) - 1
         while charIndex > 0:
             s[len() - i]
+
+def hello_world():
+    print("Hello world!")
