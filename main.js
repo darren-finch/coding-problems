@@ -201,3 +201,27 @@ var binaryTreePaths = function(root) {
     
     return pathsList
 };
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+ let longestCommonPrefix = function(strs) {
+    let output = "";
+    let curCharIndex = 0;
+    let curChar = strs[0][curCharIndex];
+    
+    while (true) {
+        curChar = strs[0][curCharIndex];
+        for (let currentWordIndex = 0; currentWordIndex < strs.length; currentWordIndex++) {
+            let nextChar = strs[currentWordIndex][curCharIndex];
+            if (nextChar != curChar) {
+                return;
+            }
+        }
+        output += curChar;
+        curCharIndex++;
+    }
+    
+    return output;
+};
