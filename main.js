@@ -225,3 +225,7 @@ var binaryTreePaths = function(root) {
     
     return output;
 };
+
+function helloWorld() {
+  console.log("Hello World!")
+}
