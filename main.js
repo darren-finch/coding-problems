@@ -226,10 +226,55 @@ var binaryTreePaths = function(root) {
     return output;
 };
 
-function helloWorld() {
-  console.log("Hello World!")
+function squareDigits(num){
+  //may the code be with you
+  var numS = num.toString();
+  var output = "";
+  for (var i = 0; i < numS.length; i++) {
+    output += parseInt(numS[i]) * parseInt(numS[i]);
+  }
+  return parseInt(output);
 }
 
-function helloWorld2() {
-  console.log("HelloOther WorlD!")
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+ var isValid = function(s) {
+  var openBrackets = []
+  for (var i = 0; i < s.length; i++) {
+      var curBracket = s[i];
+      if (curBracket == '[' || curBracket == '{' || curBracket == '(') {
+          openBrackets.push(curBracket);
+      } else {
+          // This where we return false because of unopened brackets.
+          if (openBrackets.length < 1)
+              return false;
+          
+          var lastOpenBracket = openBrackets[openBrackets.length - 1];
+          if (inverseOf(lastOpenBracket) == curBracket) {
+              openBrackets.pop();
+          } else {
+              // This is where we will return false because of incorrect bracket type or mismatched orders.
+              return false;
+          }
+      }
+  }
+  
+  // This is where we return false because of unclosed brackets.
+  if (openBrackets.length == 0)
+      return true;
+  else
+      return false;
+};
+
+var inverseOf = function(openBracket) {
+  switch (openBracket) {
+      case '[':
+          return ']';
+      case '{':
+          return '}';
+      case '(':
+          return ')';
+  }
 }
