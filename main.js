@@ -278,3 +278,23 @@ var inverseOf = function(openBracket) {
           return ')';
   }
 }
+
+function getCount(str) {
+  let count = 0;
+  
+  for (let i = 0; i < str.length; i++) {
+    if (isVowel(str[i])) {
+      count++;
+    }
+  }
+  
+  return count;
+}
+
+function isVowel(character) {
+  if (character == "a" || character == "e" || character == "i" || character == "o" || character == "u") {
+    return true;
+  } else {
+    return false;
+  }
+}
