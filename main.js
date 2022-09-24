@@ -298,3 +298,18 @@ function isVowel(character) {
     return false;
   }
 }
+
+function removeDuplicates(nums) {
+  let currentCorrectPosition = 0
+  let lastNum = nums[currentCorrectPosition]
+  let nextPosition = 1
+  
+  while (nextPosition < nums.length) {
+      if (nums[nextPosition] != nums[currentCorrectPosition]) {
+          nums[currentCorrectPosition++] = nums[nextPosition]
+      }
+      nextPosition++
+  }
+  
+  return nums
+};
