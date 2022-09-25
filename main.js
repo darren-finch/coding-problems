@@ -299,17 +299,60 @@ function isVowel(character) {
   }
 }
 
-function removeDuplicates(nums) {
-  let currentCorrectPosition = 0
-  let lastNum = nums[currentCorrectPosition]
-  let nextPosition = 1
-  
-  while (nextPosition < nums.length) {
-      if (nums[nextPosition] != nums[currentCorrectPosition]) {
-          nums[currentCorrectPosition++] = nums[nextPosition]
+function removeDuplicates(nums){
+  k = 1
+
+  let p1 = 0
+  let p2 = 1
+
+  while (p2 < nums.length) {
+      if (nums[p1] != nums[p2]) {
+          nums[++p1] = nums[p2]
+          k++
       }
-      nextPosition++
+      
+      p2++
+  }
+
+  return k
+};
+
+
+
+/**
+ * @param {number[]} arr
+ * @return {number[][]}
+ */
+ var minimumAbsDifference = function(nums) {
+  nums.sort()
+  
+  let p1 = 0
+  let p2 = 1
+  let minAbsDiff = nums[p2] - nums[p1]
+  
+  while (p2 < nums.length) {
+      let curDiff = nums[p2] - nums[p1]
+      if (curDiff < minAbsDiff) {
+          minAbsDiff = curDiff
+      }
+      
+      p1++
+      p2++
   }
   
-  return nums
+  let result = []
+  p1 = 0
+  p2 = 1
+  
+  console.log(minAbsDiff)
+  
+  while (p2 < nums.length) {
+      if (nums[p2] - nums[p1] == minAbsDiff) {
+          result.push([nums[p1], nums[p2]])
+      }
+      p1++
+      p2++
+  }
+  
+  return result
 };
