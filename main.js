@@ -356,3 +356,11 @@ function removeDuplicates(nums){
   
   return result
 };
+
+function sayHi(name) {
+  console.log(
+    "Hi "
+    + name
+    + "!"
+  )
+}
