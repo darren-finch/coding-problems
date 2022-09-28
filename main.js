@@ -357,10 +357,25 @@ function removeDuplicates(nums){
   return result
 };
 
-function sayHi(name) {
-  console.log(
-    "Hi "
-    + name
-    + "!"
-  )
+ function fizzBuzz(n) {
+  let result = new Array(n)
+  for (let i = 1; i <= n; i++) {
+      result[i-1] = smallFizzBuzz(i)
+  }
+  return result
+};
+
+function smallFizzBuzz(n) {
+  let s = ""
+  if (n % 3 == 0) {
+      s += "Fizz"
+  }
+  if (n % 5 == 0) {
+      s += "Buzz"
+  }
+  if (n % 3 != 0 && n % 5 != 0) {
+      s += n.toString()
+  }
+  
+  return s
 }
