@@ -384,18 +384,77 @@ function smallFizzBuzz(n) {
  * @param {string} s
  * @return {number}
  */
- function romanToInt(s) {
+ function romanToInt(numeralArray) {
   let sum = 0
-  for (let i = 0; i < s.length; i++) {
-      
-  }
-};
+  let numeralIndex = 0
 
-function romanToIntByNumeral(numeral, numeralIndex, numeralArray) {
-  switch (numeral) {
-      case "I":
-          if (numeralIndex < numeralArray.length - 1) {
-              
-          }
+  while (numeralIndex < numeralArray.length) {
+      let numeral = numeralArray[numeralIndex]
+      let forwardAmount = 1
+      switch (numeral) {
+          case "I":
+              if (numeralIndex < numeralArray.length - 1) {
+                  if (numeralArray[numeralIndex + 1] == "V") {
+                      sum += 4
+                      forwardAmount = 2
+                  } else if (numeralArray[numeralIndex + 1] == "X") {
+                      sum += 9
+                      forwardAmount = 2
+                  }
+                  else {
+                      sum += 1
+                  }
+              } else {
+                  sum += 1
+              }
+              break;
+          case "X":
+              if (numeralIndex < numeralArray.length - 1) {
+                  if (numeralArray[numeralIndex + 1] == "L") {
+                      sum += 40
+                      forwardAmount = 2
+                  } else if (numeralArray[numeralIndex + 1] == "C") {
+                      sum += 90
+                      forwardAmount = 2
+                  }
+                  else {
+                      sum += 10
+                  }
+              } else {
+                  sum += 10
+              }
+              break;
+          case "C":
+              if (numeralIndex < numeralArray.length - 1) {
+                  if (numeralArray[numeralIndex + 1] == "D") {
+                      sum += 400
+                      forwardAmount = 2
+                  } else if (numeralArray[numeralIndex + 1] == "M") {
+                      sum += 900
+                      forwardAmount = 2
+                  }
+                  else {
+                      sum += 100
+                  }
+              } else {
+                  sum += 100
+              }
+              break;
+          case "V":
+              sum += 5
+              break;
+          case "L":
+              sum += 50
+              break;
+          case "D":
+              sum += 500
+              break;
+          case "M":
+              sum += 1000
+              break;
+      }
+      numeralIndex += forwardAmount
   }
-}
+
+  return sum
+};
