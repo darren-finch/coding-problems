@@ -379,3 +379,23 @@ function smallFizzBuzz(n) {
   
   return s
 }
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ function romanToInt(s) {
+  let sum = 0
+  for (let i = 0; i < s.length; i++) {
+      
+  }
+};
+
+function romanToIntByNumeral(numeral, numeralIndex, numeralArray) {
+  switch (numeral) {
+      case "I":
+          if (numeralIndex < numeralArray.length - 1) {
+              
+          }
+  }
+}
