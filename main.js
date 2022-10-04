@@ -459,11 +459,22 @@ function smallFizzBuzz(n) {
   return sum
 };
 
-for (let i = 0; i < nums.length; i++) {
-    let neededDiff = target - nums[i]
-    for (let j = 0; j < nums.length; j++) {
-        if (i != j && nums[j] == neededDiff) {
-            return [i, j]
+var twoSum = function(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        let neededDiff = target - nums[i]
+        for (let j = 0; j < nums.length; j++) {
+            if (i != j && nums[j] == neededDiff) {
+                return [i, j]
+            }
         }
     }
+};
+
+function howMuchILoveYou(nbPetals) {
+    // your code
+  let res = ""
+  if (nbPatals % 2 == 0) {
+    result += ""
+  }
+  return res
 }
