@@ -510,3 +510,20 @@ function howMuchILoveYou(nbPetals) {
     // Hypothetical algorithm
     // 1. Using two pointers, start both pointers at the first element, then run the second pointer thru the array until it's looked at n positions.
 }
+
+function digPow(n, p){
+    let nAsStr = n.toString()
+    let curPow = p
+    let sum = 0
+    
+    for (let i = 0; i < nAsStr.length; i++) {
+      let curDigit = nAsStr[i]
+      sum += Math.pow(parseInt(curDigit), curPow++)
+    }
+    
+    if (sum % n == 0) {
+      return sum / n
+    } else {
+      return -1
+    }
+  }
