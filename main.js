@@ -478,3 +478,35 @@ function howMuchILoveYou(nbPetals) {
   }
   return res
 }
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+ function removeNthFromEnd(head, n) {
+    // [1, 2, 3, 4, 5]
+    // n = 5
+
+    // [1, 2, 3, 4]
+    // n = 2
+
+    // [1]
+    // n = 1
+
+    // [1, 2]
+    // n = 2
+
+    // Brute force
+    // Using two pointer approach, one pointer goes all the way to the end, while the first pointer follows behind at a distance of n-1. Then somehow we do more magic. I'm too tired.
+
+    // Hypothetical algorithm
+    // 1. Using two pointers, start both pointers at the first element, then run the second pointer thru the array until it's looked at n positions.
+}
