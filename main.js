@@ -509,6 +509,24 @@ function howMuchILoveYou(nbPetals) {
 
     // Hypothetical algorithm
     // 1. Using two pointers, start both pointers at the first element, then run the second pointer thru the array until it's looked at n positions.
+    let p1 = head
+    let p2 = head
+    let p1Distance = 1
+    let listSize = 1
+
+    while (p2 != null) {
+        p2 = p2.next
+        listSize++
+    }
+
+    while (p1Distance < n - 1) {
+        p1 = p1.next
+    }
+
+    console.log("P1: " + p1)
+    console.log("P2: " + p2)
+
+    return head
 }
 
 function digPow(n, p){
