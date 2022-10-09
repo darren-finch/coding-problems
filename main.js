@@ -558,3 +558,7 @@ function digPow(n, p){
     
     return phrases[(nbPetals - 1) % phrases.length]
 }
+
+function filterString(value) {
+  return parseInt(value.match(/[\d]*/g).filter(character => character != '').join(''), 10)
+}
