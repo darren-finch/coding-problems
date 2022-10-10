@@ -562,3 +562,7 @@ function digPow(n, p){
 function filterString(value) {
   return parseInt(value.match(/[\d]*/g).filter(character => character != '').join(''), 10)
 }
+
+function sundayHelloWorld() {
+  console.log("Hello Sunday, and hello world!")
+}
