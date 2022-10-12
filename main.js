@@ -590,3 +590,17 @@ function sundayHelloWorld() {
 
   return left
 };
+
+
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+ function isIsomorphic(s, t) {
+  let charMap = {}
+
+  // Algo:
+  // 1. Check through each character of both strings, check to 
+};
