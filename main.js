@@ -629,3 +629,37 @@ function sundayHelloWorld() {
   }
   return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 };
+
+
+
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+ function generate(numRows) {
+  let result = []
+  for (let n = 0; n < numRows; n++) {
+      let row = []
+      for (let k = 0; k <= n; k++) {
+          row.push((factorial(n)) / (factorial(n - k) * factorial(k)))
+      }
+      result.push(row)
+  }
+  return result
+};
+
+function factorial(n) {
+  let mem = []
+  return factorialWithMemoization(n, mem)
+}
+
+function factorialWithMemoization(n, mem) {
+  if (n <= 1) {
+      return 1
+  } else if (mem[n] != null) {
+      return mem[n]
+  } else {
+      mem[n] = n * factorial(n - 1, mem)
+      return mem[n]
+  }
+}
