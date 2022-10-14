@@ -663,3 +663,21 @@ function factorialWithMemoization(n, mem) {
       return mem[n]
   }
 }
+
+
+
+function choose(n,k){
+  if (k > n) {
+    return 0
+  }
+  
+  return (factorial(n)) / (factorial(k) * factorial(n - k))
+}
+
+function factorial(n) {
+  let result = 1
+  for (let i = 1; i <= n; i++) {
+    result *= i
+  }
+  return result
+}
