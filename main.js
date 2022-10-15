@@ -681,3 +681,29 @@ function factorial(n) {
   }
   return result
 }
+
+/**
+ * @param {number[]} nums
+ * @return {boolean[]}
+ */
+ var prefixesDivBy5 = function(nums) {
+  let result = []
+
+  for (let i = 0; i < nums.length; i++) {
+      let curNum = 0
+
+      for (let j = i; j >= 0; j--) {
+          if (nums[j] == 1) {
+              curNum += Math.pow(2, i - j)
+          }
+      }
+
+      if (curNum % 5 == 0) {
+          result[i] = true
+      } else {
+          result[i] = false
+      }
+  }
+
+  return result
+};
