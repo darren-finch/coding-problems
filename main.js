@@ -730,3 +730,27 @@ function factorial(n) {
 
   return result
 };
+
+/**
+ * @param {number[]} nums
+ * @return {boolean[]}
+ */
+ var prefixesDivBy5 = function(nums) {
+  let result = []
+  let actualNum = 0
+  
+  for (let i = nums.length - 1; i >= 0; i--) {
+      if (nums[i] == 1) {
+          actualNum += Math.pow(2, nums.length - i - 1)
+      }
+  }
+
+  for (let j = nums.length - 1; j >= 0; j--) {
+      console.log("Actual num base-10: " + actualNum)
+      console.log("Actual num base-2: " + actualNum.toString(2) + "\n")
+      result[j] = (actualNum % 5 == 0)
+      actualNum = Math.trunc(actualNum / 2)
+  }
+
+  return result
+};
