@@ -754,3 +754,59 @@ function factorial(n) {
 
   return result
 };
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+ var searchRange = function(nums, target) {
+  let result = [-1, -1]
+  let left = 0
+  let right = nums.length - 1
+
+  while (left <= right) {
+      let mid = Math.floor((left + right) / 2)
+
+      if (target == nums[mid]) {
+          if (mid == 0 || target != nums[mid - 1]) {
+              result[0] = mid
+              break
+          } else {
+              right = mid - 1
+          }
+      } else if (target < nums[mid]) {
+          right = mid - 1
+      } else {
+          left = mid + 1
+      }
+  }
+
+  left = 0
+  right = nums.length - 1
+
+  while (left <= right) {
+      let mid =  Math.floor((left + right) / 2)
+
+      if (target == nums[mid]) {
+          if (mid == nums.length - 1 || target != nums[mid + 1]) {
+              result[1] = mid
+              break
+          } else {
+              left = mid + 1
+          }
+      } else if (target < nums[mid]) {
+          right = mid - 1
+      } else {
+          left = mid + 1
+      }
+  }
+
+  return result
+
+  // 1. on pass 1, perform regular binary search
+  // 2. once target is found, determine if it is the first element in its little group
+  // 3. if it is, plug it into result and break loop
+  // 4. if it is not, keep binary searching until step #2 is true or until you hit left (which will be the leftmost element in the target group in the worst case.)
+  // 5. on pass 2, do the same steps as 1-4 but reversed
+};
