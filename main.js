@@ -810,3 +810,17 @@ function factorial(n) {
   // 4. if it is not, keep binary searching until step #2 is true or until you hit left (which will be the leftmost element in the target group in the worst case.)
   // 5. on pass 2, do the same steps as 1-4 but reversed
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+ var search = function(nums, target) {
+  // Strategy:    if left < right then continue regular binary search
+  //              else calculate mid and determine which side the target must lie on
+  let left = 0
+  let right = nums.length - 1
+};
