@@ -847,3 +847,49 @@ function factorial(n) {
         }
     }
 };
+
+
+
+// ********************************* WIP: MULTIPLICATIVE INVERSE ALGORITHM ******************************************
+// Problem: Find the multiplicative inverse of num under mod n if num and n are coprime, else return -1.
+
+function multiplicativeInverse(num,n) {
+    // 1. Compute GCD of num and n using Euclid's Algorithm, saving the results along the way
+    // 2. Using the Extended Euclidean Algorithm, find the two coefficients s and t such that 1 = s(num) + tn
+    // 3. Return s mod n
+    let gcdWithEuclideanResults = gcdWithEuclideanResults(num, n) // in production it'd probably be good to separate this out.
+    let gcd = gcdWithEuclideanResults[0]
+    if (gcd !== 1) {
+      return -1
+    }
+    let euclideanResults = gcdWithEuclideanResults[1]
+  
+    // CONTINUEs
+  }
+  
+  // Returns an array arr with arr[0] = GCD(x, y) and arr[1] = results of Euclidean algorithm
+  function gcdWithEuclideanResults(x, y) {
+    if (y < x) {
+      let temp = x
+      x = y
+      y = temp
+    }
+  
+    let r = y % x
+  
+    let euclideanResults = [y, x]
+  
+    while (r !== 0) {
+      euclideanResults.push(r)
+      y = x
+      x = r
+      r = y % x
+    }
+  
+    return [x, euclideanResults]
+  }
+  
+  // Given x and n that are coprime, this algorithm finds the two coefficients s and t such that 1 = sx + tn
+  function extendedEuclideanAlgorithm(x, n, euclideanResults) {
+    
+  }
