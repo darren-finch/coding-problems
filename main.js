@@ -824,3 +824,26 @@ function factorial(n) {
   let left = 0
   let right = nums.length - 1
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+ var search = function(nums, target) {
+    // Strategy:    use modified binary search to find k, then binary search the two halves 
+    // Time complexity: O(3logn) = O(logn)
+
+    let left = 0
+    let right = nums.length - 1
+
+    while (left <= right) {
+        let mid = (left + right) / 2
+        
+        if (nums[right] < nums[left]) {
+            
+        }
+    }
+};
