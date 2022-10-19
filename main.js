@@ -893,3 +893,43 @@ function multiplicativeInverse(num,n) {
   function extendedEuclideanAlgorithm(x, n, euclideanResults) {
     
   }
+
+
+
+  /**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+ // THIS PROBLEM PROBABLY NEEDS FAST-EXPONENTIATION
+function divide(dividend, divisor) {
+    // 1. Divison Algorithm: dividend = quotient (q) * + remainder (r), where r < divisor
+    // 2. If sign of dividend != sign of divisor, take the absolute value of both the dividend and divisor. Then let r = dividend - divisor. Repeatedly subtract divisor from dividend until dividend < divisor. Return the number of times you had to perform the subtraction, k, multiplied by -1
+    // 3. If sign of dividend == sign of divisor, take the absolute value of both the dividend and divisor. Then let r = dividend - divisor. Repeatedly subtract divisor from dividend until dividend < divisor. Return the number of times you had to perform the subtraction, k.
+    const dividendAndDivisorHaveSameSign = ((dividend >= 0 && divisor > 0) || (dividend <= 0 && divisor < 0))
+
+    dividend = Math.abs(dividend)
+    divisor = Math.abs(divisor)
+
+    let quotient = 0
+    let remainder = dividend
+
+    while (remainder >= divisor) {
+        remainder -= divisor
+        quotient++
+    }
+
+    if (!dividendAndDivisorHaveSameSign) {
+        quotient *= -1
+    }
+
+    const maxInt32Value = Math.pow(2, 31) - 1
+    const minInt32Value = Math.pow(-2, 31)
+    if (quotient > maxInt32Value) {
+        quotient = maxInt32Value
+    } else if (quotient < minInt32Value) {
+        quotient = minInt32Value
+    }
+
+    return quotient
+};
