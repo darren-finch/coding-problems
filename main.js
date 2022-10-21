@@ -939,3 +939,31 @@ function divide(dividend, divisor) {
 function helloWorld() {
     console.log("Hello World!")
 }
+
+
+
+function lengthOfLongestSubstring(s: String): Number {
+    let maxLength = 0
+    const seenChars = new Set<string>()
+
+    for (let i = 0; i < s.length; i++) {
+        let curLength = 0
+        for (let j = i; j < s.length; j++) {
+            const curChar = s[j]
+            if (seenChars.has(curChar)) {
+                break
+            } else {
+                curLength++
+                seenChars.add(curChar)
+            }
+        }
+
+        if (maxLength < curLength) {
+            maxLength = curLength
+        }
+        seenChars.clear()
+        curLength = 0
+    }
+
+    return maxLength
+};
