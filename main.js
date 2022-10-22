@@ -976,4 +976,18 @@ function recursiveFastPow(base, exponent) {
     if (exponent % 2 === 1) result *= base;
     return result;
   }
+
+
+
+function iterativeFastPow(base, exponent) {
+    let result = 1;
   
+    while (exponent > 0) {
+      let exponentIsOdd = exponent % 2 === 1;
+      if (exponentIsOdd) result *= base;
+      base *= base;
+      exponent = Math.floor(exponent / 2);
+    }
+  
+    return result;
+  }
