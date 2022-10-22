@@ -967,3 +967,13 @@ function lengthOfLongestSubstring(s: String): Number {
 
     return maxLength
 };
+
+
+
+function recursiveFastPow(base, exponent) {
+    if (exponent <= 0) return 1;
+    let result = Math.pow(recursiveFastPow(base, Math.floor(exponent / 2)), 2);
+    if (exponent % 2 === 1) result *= base;
+    return result;
+  }
+  
