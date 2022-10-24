@@ -991,3 +991,14 @@ function iterativeFastPow(base, exponent) {
   
     return result;
   }
+
+
+
+  function generateParenthesis(n) {
+    // To build a recursive relation:
+    // 1. Start with the base case
+    // 2. If you have everything below you computed properly, what do you need to compute the case above you?
+
+    // For this problem:
+    // 1. 
+};
