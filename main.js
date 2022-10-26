@@ -1000,5 +1000,36 @@ function iterativeFastPow(base, exponent) {
     // 2. If you have everything below you computed properly, what do you need to compute the case above you?
 
     // For this problem:
-    // 1. 
+    // 1. Use backtracking to build up branches of a decision tree.
+};
+
+
+
+function helloSleep() {
+    console.log("Brah I'm so tireds")
+}
+
+
+
+/**
+ * @param {number} x
+ * @param {number} n
+ * @return {number}
+ */
+ function myPow(originalBase, originalExponent) {
+    let result = 1
+    let base = originalBase
+    let exponent = Math.abs(originalExponent)
+
+    while (0 < exponent) {
+        if (exponent % 2 == 1) result *= base
+        base *= base
+        exponent = Math.floor(exponent /= 2)
+    }
+
+    if (0 <= originalExponent) {
+        return result
+    } else {
+        return 1 / result
+    }
 };
