@@ -1033,3 +1033,32 @@ function helloSleep() {
         return 1 / result
     }
 };
+
+
+
+// This works but doesn't pass submission
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+ function generateParenthesis(n) {
+    if (n === 1) return ["()"]
+
+    let prevGeneratedParenthesis = generateParenthesis(n - 1)
+    let results = []
+
+    for (let u of prevGeneratedParenthesis) {
+        let newlyGeneratedParenthesis = [
+            "(" + u + ")",
+            u + "()"
+        ]
+
+        if ((("()" + u) !== (u + "()"))) {
+            newlyGeneratedParenthesis.push("()" + u)
+        }
+
+        results = results.concat(newlyGeneratedParenthesis)
+    }
+    
+    return results
+};
