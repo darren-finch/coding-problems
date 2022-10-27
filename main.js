@@ -1062,3 +1062,23 @@ function helloSleep() {
     
     return results
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+ function permute(nums) {
+    if (nums.length === 1) return [nums]
+
+    let permutations = []
+    for (let curNum of nums) {
+        let numsWithoutCurNum = nums.filter((num) => num != curNum)
+        let permutationsOfNumsWithoutCurNum = permute(numsWithoutCurNum)
+        let permutationsOfNumsForCurNum = permutationsOfNumsWithoutCurNum.map((permutation) => [curNum, ...permutation])
+        permutations.push(...permutationsOfNumsForCurNum)
+    }
+
+    return permutations
+};
