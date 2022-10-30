@@ -1093,3 +1093,12 @@ function helloSleep() {
  function uniquePaths(m, n) {
     // Has something to do with counting the number of paths left at each tile.
 };
+
+
+
+function totalIncDec(x){
+    // The question seems that it can be phrased as the following:
+    //
+    // How many ways can you arrange the digits in a number
+    // with x digits such that the entire number is either increasing or decreasing?
+  }
