@@ -1102,3 +1102,30 @@ function totalIncDec(x){
     // How many ways can you arrange the digits in a number
     // with x digits such that the entire number is either increasing or decreasing?
   }
+
+
+
+  // Failed attempt at generating combinations lexicographically
+  function combine(n, k) {
+    let results = []
+    let curCombination = []
+    for (let i = 1; i <= k; i++) {
+        curCombination.push(i)
+    }
+
+    results.push(curCombination)
+
+    let curIndex = k - 1
+    while (0 < curIndex) {
+        let maxNumForIndexedPosition = curIndex + 1
+        if (curCombination[curIndex] < maxNumForIndexedPosition) {
+            curCombination[curIndex]++
+        } else {
+            curCombination[--curIndex]++
+        }
+
+        results.push(curCombination)
+    }
+
+    return results
+};
