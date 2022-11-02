@@ -1105,53 +1105,52 @@ function totalIncDec(x){
 
 
 
-  // Failed attempt at generating combinations lexicographically
+  // Dirty but works attempt at generating combinations iteratively
+  let justHitMax = false
+
   function combine(n, k) {
-    let results = []
-    let curCombination = []
-    for (let i = 1; i <= k; i++) {
-        curCombination.push(i)
-    }
-
-    results.push(curCombination)
-
-    let curIndex = k - 1
-    while (0 < curIndex) {
-        let maxNumForIndexedPosition = curIndex + 1
-        if (curCombination[curIndex] < maxNumForIndexedPosition) {
-            curCombination[curIndex]++
-        } else {
-            curCombination[--curIndex]++
-        }
-
-        results.push(curCombination)
-    }
-
-    return results
-};
-
-
-
-function combine(n, k) {
-    let results = []
-    let curCombination = []
-    for (let i = 1; i <= k; i++) {
-        curCombination.push(i)
-    }
-
-    results.push(curCombination)
-
-    let curIndex = k - 1
-    while (0 < curIndex) {
-        let maxNumForIndexedPosition = curIndex + 1
-        if (curCombination[curIndex] < maxNumForIndexedPosition) {
-            curCombination[curIndex]++
-        } else {
-            curCombination[--curIndex]++
-        }
-
-        results.push(curCombination)
-    }
-
-    return results
-};
+      let curCombination = []
+      for (let i = 0; i < k; i++) {
+          curCombination.push(i + 1)
+      }
+  
+      let combinationCount = factorial(n) / (factorial(k) * factorial(n - k))
+      let results = []
+      for (let i = 1; i <= combinationCount; i++) {
+          results.push([...curCombination])
+          curCombination = generateNextCombination(curCombination, n, k)
+      }
+  
+      return results
+  };
+  
+  function generateNextCombination(curCombination, combinationRange, combinationLen) {
+      let largestIndexNotAtMax = combinationLen - 1
+      while(largestIndexNotAtMax >= 0) {
+          let maxNumAtIndex = combinationRange - (combinationLen - largestIndexNotAtMax) + 1
+          if (curCombination[largestIndexNotAtMax] < maxNumAtIndex) {
+              break
+          }
+          largestIndexNotAtMax--
+      }
+  
+      curCombination[largestIndexNotAtMax]++
+  
+      if (justHitMax) {
+          let next = curCombination[largestIndexNotAtMax]
+          for (let i = largestIndexNotAtMax + 1; i <= combinationLen - 1; i++) {
+              curCombination[i] = next + (i - largestIndexNotAtMax)
+          }
+      }
+  
+      let maxForLargestIndexNotAtMax = combinationRange - (combinationLen - largestIndexNotAtMax) + 1
+  
+      justHitMax = curCombination[largestIndexNotAtMax] >= maxForLargestIndexNotAtMax
+  
+      return curCombination
+  }
+  
+  function factorial(n) {
+      if (n <= 1) return 1
+      return n * factorial(n - 1)
+  }
