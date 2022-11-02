@@ -1129,3 +1129,29 @@ function totalIncDec(x){
 
     return results
 };
+
+
+
+function combine(n, k) {
+    let results = []
+    let curCombination = []
+    for (let i = 1; i <= k; i++) {
+        curCombination.push(i)
+    }
+
+    results.push(curCombination)
+
+    let curIndex = k - 1
+    while (0 < curIndex) {
+        let maxNumForIndexedPosition = curIndex + 1
+        if (curCombination[curIndex] < maxNumForIndexedPosition) {
+            curCombination[curIndex]++
+        } else {
+            curCombination[--curIndex]++
+        }
+
+        results.push(curCombination)
+    }
+
+    return results
+};
