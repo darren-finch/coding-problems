@@ -1154,3 +1154,32 @@ function totalIncDec(x){
       if (n <= 1) return 1
       return n * factorial(n - 1)
   }
+
+
+
+// WIP: nextSubsetOfP where P_r,n is the set of all non-empty subsets of {1,2,...,n} with r or fewer elements.
+function nextSubsetOfP(curSubset, n, r) {
+    let largestIndexLessThanN = -1
+    for (let i = 0; i < curSubset.length; i++) {
+      if (curSubset[i] < n) {
+        largestIndexLessThanN = i
+      }
+    }
+  
+    if (largestIndexLessThanN === -1) {
+      return curSubset
+    }
+  
+    if (curSubset.length < r && largestIndexLessThanN === r - 1) {
+      return [...curSubset, curSubset[largestIndexLessThanN]++]
+    } else {
+      curSubset[largestIndexLessThanN]++
+      let returnVal = []
+      for (let i = 0; i <= largestIndexLessThanN; i++) {
+        returnVal.push(curSubset[i])
+      }
+      return returnVal
+    }
+  }
+  
+  console.log(nextSubsetOfP([1, 2, 3], 4, 4))
