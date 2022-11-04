@@ -1183,3 +1183,47 @@ function nextSubsetOfP(curSubset, n, r) {
   }
   
   console.log(nextSubsetOfP([1, 2, 3], 4, 4))
+
+
+
+  /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1Head
+ * @param {ListNode} list2Head
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(list1Head, list2Head) {
+    if (list1Head === null) return list2Head
+    if (list2Head === null) return list1Head
+
+    let head = null
+    let curPointer = null
+    let oppNext = null
+    if (list1Head.val <= list2Head.val) {
+        head = list1Head
+        curPointer = list1Head
+        oppNext = list2Head
+    } else  {
+        head = list2Head
+        curPointer = list2Head
+        oppNext = list1Head
+    }
+
+    while (oppNext != null) {
+        if (curPointer.next !== null && curPointer.next.val <= oppNext.val) {
+            curPointer = curPointer.next
+        } else {
+            let temp = curPointer.next
+            curPointer.next = oppNext
+            oppNext = temp
+        }
+    }
+
+    return head
+};
