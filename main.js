@@ -1227,3 +1227,38 @@ var mergeTwoLists = function(list1Head, list2Head) {
 
     return head
 };
+
+
+
+// 3SUM BRUTE FORCE WIP
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+ function threeSum(nums) {
+    // Stopped at needing to find a pattern in the solutions that could provide a clue as to how to solve this problem in a more efficient time complexity than O(n^3 + m) = O(n^3), and hopefully a better space complexity than O(2k) = O(k) where n is the size of the input, m is the number of triplets (not necessarily distinct) that add to 0, and k is the number of distinct triplets that add to 0.
+
+    return threeSumBruteForce(nums)
+};
+
+function threeSumBruteForce(nums) {
+    // Strategy: Find all triplets the obvious O(n^3) way, then filter out all duplicates
+    let results = []
+    let distinctResults = new Set()
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
+            for (let k = 0; k < nums.length; k++) {
+                if ((i !== j && i !== k && j !== k) && (nums[i] + nums[j] + nums[k] === 0)) {
+                    let sortedResult = [nums[i], nums[j], nums[k]].sort()
+                    if (!distinctResults.has(sortedResult)) {
+                        distinctResults.add(sortedResult)
+                    }
+                }
+            }
+        }
+    }
+
+    // How the heck do you return a set as a list?
+    // This would help tremendously!
+    return [...distinctResults.entries()]
+}
