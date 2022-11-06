@@ -1277,13 +1277,16 @@ function threeSumBruteForce(nums) {
     for (let row = 0; row < board.length; row++) {
         for (let column = 0; column < board.length; column++) {
             let cellEntry = board[row][column]
-            let gridNum = ((row + 1) % 3) + ((column + 1) % 3)
-            console.log("\nrow = " + row)
-            console.log("column = " + column)
-            console.log("gridNum = " + gridNum)
-            // if (cellEntry !== ".") {
-            //     // if (!columnHashSets[column])
-            // }
+            let gridNum = (3 * Math.floor(row / 3)) + Math.floor(column / 3)
+            if (cellEntry !== ".") {
+                if (!columnHashSets[column].has(cellEntry) && !rowHashSets[row].has(cellEntry) && !subGridHashSets[gridNum].has(cellEntry)) {
+                    columnHashSets[column].add(cellEntry)
+                    rowHashSets[row].add(cellEntry)
+                    subGridHashSets[gridNum].add(cellEntry)
+                } else {
+                    return false
+                }
+            }
         }
     }
     
