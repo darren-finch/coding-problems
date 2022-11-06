@@ -1292,3 +1292,36 @@ function threeSumBruteForce(nums) {
     
     return true
 };
+
+
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ * This solution was inspired by another LeetCode solution (particularly the clever use of the Set())
+ */
+ var isValidSudoku = function(board) {
+    let seen = new Set()
+    for (let row = 0; row < board.length; row++) {
+        for (let column = 0; column < board.length; column++) {
+            let cellEntry = board[row][column]
+            if (cellEntry !== ".") {
+                let gridNum = (3 * Math.floor(row / 3)) + Math.floor(column / 3)
+
+                let columnEntry = `column ${column}: ${cellEntry}`
+                let rowEntry = `row ${row}: ${cellEntry}`
+                let subGridEntry = `subGrid ${gridNum}: ${cellEntry}`
+
+                if (seen.has(columnEntry) || seen.has(rowEntry) || seen.has(subGridEntry)) {
+                    return false
+                }
+
+                seen.add(columnEntry)
+                seen.add(rowEntry)
+                seen.add(subGridEntry)
+            }
+        }
+    }
+    
+    return true
+};
