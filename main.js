@@ -1262,3 +1262,30 @@ function threeSumBruteForce(nums) {
     // This would help tremendously!
     return [...distinctResults.entries()]
 }
+
+
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+ var isValidSudoku = function(board) {
+    let columnHashSets = [new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set()]
+    let rowHashSets = [new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set()]
+    let subGridHashSets = [new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set()]
+
+    for (let row = 0; row < board.length; row++) {
+        for (let column = 0; column < board.length; column++) {
+            let cellEntry = board[row][column]
+            let gridNum = ((row + 1) % 3) + ((column + 1) % 3)
+            console.log("\nrow = " + row)
+            console.log("column = " + column)
+            console.log("gridNum = " + gridNum)
+            // if (cellEntry !== ".") {
+            //     // if (!columnHashSets[column])
+            // }
+        }
+    }
+    
+    return true
+};
