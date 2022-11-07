@@ -1325,3 +1325,38 @@ function threeSumBruteForce(nums) {
     
     return true
 };
+
+
+
+/**
+ * This is an implementation of a solution with sorted arrays.
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+ var intersect = function(nums1, nums2) {
+    nums1.sort()
+    nums2.sort()
+
+    if (nums1.length < nums2.length) {
+        let temp = nums1
+        nums1 = nums2
+        nums2 = temp
+    }
+
+    let p1 = 0
+    let p2 = 0
+    let results = []
+
+    while (p1 < nums1.length && p2 < nums2.length) {
+        if (nums1[p1] == nums2[p2]) {
+            results.push(nums1[p1])
+        } else if (nums1[p1] < nums2[p2]) {
+            p1++
+        } else {
+            p2++
+        }
+    }
+
+    return results
+};
