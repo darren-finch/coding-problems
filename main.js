@@ -1360,3 +1360,29 @@ function threeSumBruteForce(nums) {
 
     return results
 };
+
+
+
+// Algorithm has (O(n^2) time complexity), won't pass the final LeetCode test because it's just a little to slow.
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+ var find132pattern = function(nums) {
+    if (nums.length < 3) return false
+
+    for (let i = 0; i < nums.length; i++) {
+        let theThreeOrTwoInTheSequence = null
+        for (j = i + 1; j < nums.length; j++) {
+            if (nums[i] < nums[j]) {
+                if (theThreeOrTwoInTheSequence !== null && nums[j] < theThreeOrTwoInTheSequence) {
+                    return true
+                } else {
+                    theThreeOrTwoInTheSequence = nums[j]
+                }
+            }
+        }
+    }
+
+    return false
+};
