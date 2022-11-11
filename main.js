@@ -1386,3 +1386,45 @@ function threeSumBruteForce(nums) {
 
     return false
 };
+
+
+
+let numberToLetterMappings = {
+    2: ["a", "b", "c"],
+    3: ["d", "e", "f"],
+    4: ["g", "h", "i"],
+    5: ["j", "k", "l"],
+    6: ["m", "n", "o"],
+    7: ["p", "q", "r", "s"],
+    8: ["t", "u", "v"],
+    9: ["w", "x", "y", "z"],
+}
+
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+function letterCombinations(digits) {
+    // Base cases
+    if (digits.length === 0) {
+        return []
+    }
+
+    if (digits.length === 1) {
+        return numberToLetterMappings[digits[0]]
+    }
+
+    // Recursive step
+    let results = []
+    let recursiveResults = letterCombinations(digits.substring(1))
+    let lettersForThisRecursiveStep = numberToLetterMappings[digits[0]]
+    for (let i = 0; i < lettersForThisRecursiveStep.length; i++) {
+        let resultsForCurLetter = []
+        for (let j = 0; j < recursiveResults.length; j++) {
+            resultsForCurLetter.push(lettersForThisRecursiveStep[i] + recursiveResults[j])
+        }
+        results.push(...resultsForCurLetter)
+    }
+
+    return results
+}
