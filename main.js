@@ -1428,3 +1428,20 @@ function letterCombinations(digits) {
 
     return results
 }
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var longestConsecutive = function(nums) {
+    // Temporary brute force algorithm:
+    // Create a list to store some lists
+    // Until we have iterated nums.length times:
+    //      Find the minimum element in nums, call it x
+    //      Find a list in the list of lists where the last element is less than x by exactly one and put x at the end of it
+    //      If we find a list with a last element that is equal to x by exactly one, then skip this iteration of the loop and do nothing
+    //      If we cannot find a list with either of the above conditions, put x onto its own list.
+    // This process will result in a list of lists with consecutive elements inside. Return the length of the longest such list. 
+};
