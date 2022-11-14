@@ -1445,3 +1445,37 @@ function letterCombinations(digits) {
     //      If we cannot find a list with either of the above conditions, put x onto its own list.
     // This process will result in a list of lists with consecutive elements inside. Return the length of the longest such list. 
 };
+
+
+
+// WIP: hasCycle
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    if (pos == -1 || head == null || head.next == null) {
+        return false
+    }
+
+    let curr = head.next
+    let prev = head
+
+    while (prev !== null) {
+        if (curr !== null && curr.next !== null) {
+            let temp = curr.next
+            curr.next = prev
+            prev = temp
+        }
+
+        
+    }
+};
