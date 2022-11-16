@@ -1479,3 +1479,15 @@ var hasCycle = function(head) {
         
     }
 };
+
+
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var longestPalindrome = function(s) {
+    // This may be a spin-off of the maximum subarray problem that can be solved with Knuth's algorithm. I just wish I remember what it was.
+
+    // let maxPalindromeLength = 0
+};
