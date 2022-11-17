@@ -1491,3 +1491,32 @@ var hasCycle = function(head) {
 
     // let maxPalindromeLength = 0
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number[]} index
+ * @return {number[]}
+ */
+ function createTargetArray(nums, index) {
+    let target = []
+    for (let i = 0; i < nums.length; i++) {
+        target = insert(target, nums[i], index[i])
+    }
+    return target
+};
+
+/**
+ * @param {number[]} numsArr
+ * @param {number} num
+ * @param {number} index
+ * @return {number[]}
+ */
+function insert(numsArr, num, index) {
+    if (numsArr.length < index) {
+        numsArr.push(num)
+        return numsArr
+    }
+    return numsArr.slice(0, index).concat(num, numsArr.slice(index, numsArr.length))
+}
