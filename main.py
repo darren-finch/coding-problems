@@ -314,3 +314,28 @@
 
 # def hello_world():
 #     print("Hello world!")
+
+
+
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        # Simple algorithm
+        # Turn number into string
+        # Reverse all of the string except for negative sign if it exists
+        # Turn reversed string back into number
+
+        # Algorithm for unsigned integer:
+        # Start with empty string s
+        # Until x is 0
+        # Concat x mod 2 onto s
+        # If len(s) > 32 then return 0
+        # If loop completes, return s as an integer, which would just require summing up the powers of two
+
+        # Algorithm for signed integer
+        # Turn integer into unsigned integer and store whether it was negative
+        # Do algorithm for unsigned integer
+        # Return 
