@@ -339,3 +339,24 @@ class Solution(object):
         # Turn integer into unsigned integer and store whether it was negative
         # Do algorithm for unsigned integer
         # Return 
+
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        seenNumbers = {}
+        for i, num in enumerate(nums):
+            neededDiff = target - num
+            if not seenNumbers.has_key(neededDiff):
+                seenNumbers[num] = i
+            else:
+                return [seenNumbers[neededDiff], i]
+        return [-1, -1]
+
+def disemvowel(string):
+    vowels = 'aeiouAEIOU'
+    new_string = ''
+    for i in string:
+        if i not in vowels:
+            new_string+= i 
+    return new_string
