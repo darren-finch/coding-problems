@@ -1547,3 +1547,44 @@ function insert(numsArr, num, index) {
 
     return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val)
 };
+
+
+
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+ var combinationSum = function(candidates, target) {
+    // Overview of algorithm:
+    // Base case: Return null if target < 0, or return [] if target == 0
+    // 
+    // Declare results array
+    // Loop through array
+    // For each element, add that element to each list returned by a recursive call to combinationSum(candidates, target - cur element), if the return value of that function is not null
+    // Add the elements of the list obtained from the previous step onto the results array
+    // Return results array
+
+    if (target < 0) {
+        return null
+    }
+    if (target == 0) {
+        return []
+    }
+
+    // WIP
+    let results = []
+    for (let candidate of candidates) {
+        let newTarget = target - candidate
+        let combinationsThatSumToNewTarget = combinationSum(candidates, newTarget)
+        if (combinationsThatSumToNewTarget != null) {
+            if (combinationsThatSumToNewTarget.length == 0) {
+                results.push([candidate])
+            } else {
+                let combinationsToAddToResults = combinationsThatSumToNewTarget.map((elem) => [candidate, ...elem])
+                results.push(...combinationsToAddToResults)
+            }
+        }
+    }
+    return results
+};
