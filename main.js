@@ -1588,3 +1588,18 @@ function insert(numsArr, num, index) {
     }
     return results
 };
+
+
+
+function isIsogram(str){
+    const seenNumbers = new Set() 
+    for (let i = 0; i < str.length; i++) {
+      const curChar = str[i]
+      if (seenNumbers.has(curChar.toLowerCase())) {
+        return false
+      } else {
+        seenNumbers.add(curChar.toLowerCase())
+      }
+    }
+    return true
+  }
