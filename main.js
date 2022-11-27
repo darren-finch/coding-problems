@@ -1594,12 +1594,65 @@ function insert(numsArr, num, index) {
 function isIsogram(str){
     const seenNumbers = new Set() 
     for (let i = 0; i < str.length; i++) {
-      const curChar = str[i]
-      if (seenNumbers.has(curChar.toLowerCase())) {
+        const curChar = str[i]
+        if (seenNumbers.has(curChar.toLowerCase())) {
         return false
-      } else {
+        } else {
         seenNumbers.add(curChar.toLowerCase())
-      }
+        }
     }
     return true
-  }
+}
+
+
+
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+ function uniquePaths(m, n) {
+    if (m == 1 || n == 1) return 1
+
+    // Basic algorithm (based on a BFS. Basic idea is to show how many ways you can get to each node as you go along.)
+    // Assign the value of 0 to each node except the top left node, which will be assigned the value of 1.
+    // Declare a new queue
+    // Put the top left node in the queue
+    // For each node until we've reached the end node:
+    //      Pull off the next node from the queue
+    //      Add the node's value to each of the node's neighbors
+    //      Continue until there are no more nodes left to visit
+    // The bottom right node will now have the number of possible unique paths the robot can take.
+    const grid = new Array(m).fill([]).map(row => new Array(n).fill(0))
+    grid[0][0] = 1
+
+    const unvisitedPositions = []
+    unvisitedPositions.push({row: 0, col: 0})
+
+    let i = 1
+
+    while (0 < unvisitedPositions.length) {
+        const curPos = unvisitedPositions.shift()
+        let curPosNextDown = {row: curPos.row + 1, col: curPos.col}
+        let curPosNextRight = {row: curPos.row, col: curPos.col + 1}
+
+        if (curPosNextDown.row < m) {
+            grid[curPosNextDown.row][curPosNextDown.col] += grid[curPos.row][curPos.col]
+
+            // TODO: OPTOMIZE THIS
+            if (!unvisitedPositions.some((pos) => pos.row == curPosNextDown.row && pos.col == curPosNextDown.col)) {
+                unvisitedPositions.push(curPosNextDown)
+            }
+        }
+        if (curPosNextRight.col < n) {
+            grid[curPosNextRight.row][curPosNextRight.col] += grid[curPos.row][curPos.col]
+
+            // TODO: OPTOMIZE THIS
+            if (!unvisitedPositions.some((pos) => pos.row == curPosNextRight.row && pos.col == curPosNextRight.col)) {
+                unvisitedPositions.push(curPosNextRight)
+            }
+        }
+    }
+
+    return grid[m - 1][n - 1]
+};
