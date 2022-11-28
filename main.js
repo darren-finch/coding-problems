@@ -1656,3 +1656,60 @@ function isIsogram(str){
 
     return grid[m - 1][n - 1]
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+ var nextPermutation = function(nums) {
+    let i = -1
+    for (let k = 0; k < nums.length - 1; k++) {
+        if (nums[k] < nums[k + 1]) {
+            i = k
+        }
+    }
+
+    // There is no larger re-arrangement, reverse the array passed in
+    if (i == -1) {
+        reverse(nums, 0, nums.length - 1)
+        return
+    }
+
+    let j = i
+    for (let k = i + 1; k < nums.length; k++) {
+        if (nums[i] < nums[k]) {
+            j = k
+        }
+    }
+
+    swap(nums, i, j)
+
+    sort(nums, i + 1, nums.length - 1)
+};
+
+// Bubble sort, to speed up the algorithm maybe use selection sort?
+function sort(nums, start, stop) {
+    for(let i = start; i <= stop; i++) {
+        for(let j = i + 1; j <= stop; j++) {
+            if (nums[j] < nums[i]) {
+                swap(nums, i, j)
+            }
+        }
+    }
+}
+
+function reverse(nums, start, stop) {
+    while (start < stop) {
+        swap(nums, start, stop)
+        start++
+        stop--
+    }
+}
+
+function swap(nums, i, j) {
+    let temp = nums[i]
+    nums[i] = nums[j]
+    nums[j] = temp
+}
