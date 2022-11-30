@@ -1726,3 +1726,58 @@ function swap(nums, i, j) {
     // This algorithm sounds like a proper greedy algorithm.
     // WHat we need to do is keep finding the local next greaststl
 };
+
+
+
+const queue = []
+let top = null
+
+var MyStack = function() {
+    
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function(x) {
+    queue.push(x)
+
+    let temp = null
+    for (let i = 0; i < queue.length - 1; i++) {
+        temp = queue.shift()
+        queue.push(temp)
+    }
+
+    top = temp
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function() {
+    return queue.shift()
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function() {
+    return top
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function() {
+    return queue.length == 0
+};
+
+/** 
+ * Your MyStack object will be instantiated and called as such:
+ * var obj = new MyStack()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.empty()
+ */
