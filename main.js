@@ -1713,3 +1713,16 @@ function swap(nums, i, j) {
     nums[i] = nums[j]
     nums[j] = temp
 }
+
+
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+ var nextGreaterElement = function(nums1, nums2) {
+    // Algorithm:
+    // This algorithm sounds like a proper greedy algorithm.
+    // WHat we need to do is keep finding the local next greaststl
+};
