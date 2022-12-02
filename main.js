@@ -1781,3 +1781,13 @@ MyStack.prototype.empty = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.empty()
  */
+
+
+
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+ var generateMatrix = function(n) {
+    // WIP, will use mathmatical properties to solve in a reasonable amount of time. The brute force algorithm would generate all possible combinationsa and check each of them for validity. Or something like that.
+};
