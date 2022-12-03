@@ -1728,3 +1728,29 @@ var generateMatrix = function (n) {
 var sortedListToBST = function (head) {
 	// WIP, need to learn how to create a balanced binary search tree
 }
+
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function (candidates, target) {
+	const result = []
+
+	for (const candidate of candidates) {
+		if (target - candidate == 0) {
+			result.push([candidate])
+		} else if (0 < target - candidate) {
+			let combinationsThatSumToTargetMinusCandidate = combinationSum(candidates, target - candidate)
+			if (0 < combinationsThatSumToTargetMinusCandidate.length) {
+				combinationsThatSumToTargetMinusCandidate = combinationsThatSumToTargetMinusCandidate.map((val) => [
+					candidate,
+					...val,
+				])
+				result.push(...combinationsThatSumToTargetMinusCandidate)
+			}
+		}
+	}
+
+	return result
+}
