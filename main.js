@@ -1754,3 +1754,47 @@ var combinationSum = function (candidates, target) {
 
 	return result
 }
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function (a, b) {
+	// a.length should always be >= b.length
+	if (b.length < a.length) {
+		const temp = a
+		a = b
+		b = temp
+	}
+
+	let output = ""
+	let carry = 0
+	for (let i = a.length - 1; i >= 0; i--) {
+		const top = a[i]
+
+		if (i - b.length >= 0) {
+			const bottom = b[i - b.length]
+
+			if (top === "0" && bottom === "0") {
+				output = carry.toString() + output
+				carry = 0
+			} else if (top === "0" && bottom !== "0") {
+				output = "1" + output
+			} else {
+				output = "1" + output
+				carry = 1
+			}
+		} else {
+			const tempResult = parseInt(top) + carry
+			if (tempResult < 2) {
+				carry = 0
+			} else {
+				tempResult = 1
+			}
+			output = tempResult.toString() + output
+		}
+	}
+
+	return output
+}
