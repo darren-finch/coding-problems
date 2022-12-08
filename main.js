@@ -1826,3 +1826,55 @@ var rangeSumBST = function (root, low, high) {
 		return rangeSumBST(root.left, low, high)
 	}
 }
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function (matrix) {
+	return spiralOrderRecursive(matrix, 0, 0, matrix.length - 1, matrix[0].length - 1)
+}
+
+function spiralOrderRecursive(matrix, startRow, startCol, endRow, endCol) {
+	if (endRow < startRow || endCol < startCol) {
+		return []
+	}
+
+	let row = startRow
+	let col = startCol
+	let results = []
+
+	while (col <= endCol) {
+		results.push(matrix[row][col++])
+	}
+
+	col = endCol
+	row += 1
+
+	if (row <= endRow) {
+		while (row <= endRow) {
+			results.push(matrix[row++][col])
+		}
+
+		row = endRow
+		col -= 1
+
+		if (startCol <= col) {
+			while (startCol <= col) {
+				results.push(matrix[row][col--])
+			}
+
+			col = startCol
+			row -= 1
+
+			if (startRow < row) {
+				while (startRow < row) {
+					results.push(matrix[row--][col])
+				}
+			}
+		}
+	}
+
+	let finalResults = [...results, ...spiralOrderRecursive(matrix, startRow + 1, startCol + 1, endRow - 1, endCol - 1)]
+	return finalResults
+}
