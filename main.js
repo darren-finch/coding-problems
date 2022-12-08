@@ -1878,3 +1878,45 @@ function spiralOrderRecursive(matrix, startRow, startCol, endRow, endCol) {
 	let finalResults = [...results, ...spiralOrderRecursive(matrix, startRow + 1, startCol + 1, endRow - 1, endCol - 1)]
 	return finalResults
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {boolean}
+ */
+var leafSimilar = function (root1, root2) {
+	const treeOneLeafNodes = getLeafNodes(root1)
+	const treeTwoLeafNodes = getLeafNodes(root2)
+
+	if (treeOneLeafNodes.length !== treeTwoLeafNodes.length) {
+		return false
+	}
+
+	for (let i = 0; i < treeOneLeafNodes.length; i++) {
+		if (treeOneLeafNodes[i] !== treeTwoLeafNodes[i]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+function getLeafNodes(root) {
+	if (root === null) {
+		return []
+	}
+
+	if (root.left === null && root.right === null) {
+		return [root.val]
+	}
+
+	return getLeafNodes(root.left).concat(getLeafNodes(root.right))
+}
