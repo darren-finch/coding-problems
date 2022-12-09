@@ -1920,3 +1920,25 @@ function getLeafNodes(root) {
 
 	return getLeafNodes(root.left).concat(getLeafNodes(root.right))
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxAncestorDiff = function (root) {
+	// Brute Force Algorithm:
+	// For each node, check all the children. Return the max differerence. O(n^2). But we can surely do better than that.
+	outerQueue = [root]
+	while (0 < outerQueue.length) {
+		innerQueue = [outerQueue.shift()]
+		while (0 < innerQueue.length) {}
+	}
+}
