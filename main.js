@@ -1958,3 +1958,48 @@ var maxAncestorDiff = function (root) {
 var maxProduct = function (root) {
 	// WIP: maxProduct
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxAncestorDiff = function (root) {
+	// Brute Force Algorithm:
+	// For each node, check all the children. Return the max differerence. O(n^2). But we can surely do better than that.
+	const outerQueue = [root]
+	let maxDiff = 0
+	while (0 < outerQueue.length) {
+		const ancestor = outerQueue.shift()
+		const innerQueue = []
+		if (ancestor.left !== null) {
+			innerQueue.push(ancestor.left)
+			outerQueue.push(ancestor.left)
+		}
+		if (ancestor.right !== null) {
+			innerQueue.push(ancestor.right)
+			outerQueue.push(ancestor.right)
+		}
+		while (0 < innerQueue.length) {
+			const child = innerQueue.shift()
+			const diff = Math.abs(ancestor.val - child.val)
+			if (maxDiff < diff) {
+				maxDiff = diff
+			}
+			if (child.left !== null) {
+				innerQueue.push(child.left)
+			}
+			if (child.right !== null) {
+				innerQueue.push(child.right)
+			}
+		}
+	}
+	return maxDiff
+}
