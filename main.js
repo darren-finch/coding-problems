@@ -2003,3 +2003,48 @@ var maxAncestorDiff = function (root) {
 	}
 	return maxDiff
 }
+
+/**
+ * @param {number} columnNumber
+ * @return {string}
+ */
+var convertToTitle = function (columnNumber) {
+	const alphabet = [
+		"Z",
+		"A",
+		"B",
+		"C",
+		"D",
+		"E",
+		"F",
+		"G",
+		"H",
+		"I",
+		"J",
+		"K",
+		"L",
+		"M",
+		"N",
+		"O",
+		"P",
+		"Q",
+		"R",
+		"S",
+		"T",
+		"U",
+		"V",
+		"W",
+		"X",
+		"Y",
+	]
+	let x = columnNumber
+	let result = ""
+	while (0 < x) {
+		console.log(x)
+		let letterIndex = x % 26
+		result = alphabet[letterIndex] + result
+		x = Math.floor(x / 26)
+	}
+
+	return result
+}
