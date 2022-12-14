@@ -2048,3 +2048,13 @@ var convertToTitle = function (columnNumber) {
 
 	return result
 }
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+	// Algorithm if you want to brute force:
+	// Generate all combinations of integers with indices not adjacent to each other in nums
+	// Return the maximum combination sum
+}
