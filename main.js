@@ -2058,3 +2058,14 @@ var rob = function (nums) {
 	// Generate all combinations of integers with indices not adjacent to each other in nums
 	// Return the maximum combination sum
 }
+
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ */
+var longestCommonSubsequence = function (text1, text2) {
+	// Thoughts for the algorithm:
+	// Maybe you can somehow figure out which string is longer than the other,
+	// then use that to remove the letters that are preventing the subsequence to be read quickly.
+}
