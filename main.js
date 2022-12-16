@@ -2069,3 +2069,70 @@ var longestCommonSubsequence = function (text1, text2) {
 	// Maybe you can somehow figure out which string is longer than the other,
 	// then use that to remove the letters that are preventing the subsequence to be read quickly.
 }
+
+class MyStack {
+	list = []
+
+	push(data) {
+		this.list.push(data)
+	}
+
+	pop() {
+		const temp = []
+		const deletedVal = null
+		for (let i = 0; i < this.list.length; i++) {
+			if (i == 0) {
+				temp.push(this.list[i])
+				deletedVal = this.list[i]
+			}
+		}
+		return deletedVal
+	}
+
+	peek() {
+		return this.list[0]
+	}
+
+	isEmpty() {
+		return this.list.length == 0
+	}
+}
+
+class MyQueue {
+	stack1 = new MyStack()
+	stack2 = new MyStack()
+
+	push(data) {
+		this.stack1.push(data)
+
+		while (!this.stack1.isEmpty()) {
+			this.stack2.push(this.stack1.pop())
+		}
+
+		// Stack 1 should always have the data
+		const temp = this.stack1
+		this.stack1 = this.stack2
+		this.stack2 = temp
+	}
+
+	pop() {
+		return this.stack1.remove(this.stack1.length - 1)
+	}
+
+	peek() {
+		return this.stack1[this.stack1.length - 1]
+	}
+
+	empty() {
+		return this.stack1.isEmpty()
+	}
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
