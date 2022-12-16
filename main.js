@@ -2136,3 +2136,17 @@ class MyQueue {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
+
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var grayCode = function (n) {
+	// n determines the number of bits in each number
+	// n = 1 -> [0, 1]
+	// n = 2 -> [00, 01, 11, 10]
+	// n = 3 -> [000, 100, 110, 111, 101, 001, ]
+	// The brute force solution is to generate a set of all the potential combinations (O(n) if you know what you're doing).
+	// Then for each index in the list, just go through the combinations and pick the one that's only one bit off.
+	// However, the other requirements still need to be satisfied, and I'm not yet sure how to do that.
+}
