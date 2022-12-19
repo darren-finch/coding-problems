@@ -2150,3 +2150,28 @@ var grayCode = function (n) {
 	// Then for each index in the list, just go through the combinations and pick the one that's only one bit off.
 	// However, the other requirements still need to be satisfied, and I'm not yet sure how to do that.
 }
+
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function (temperatures) {
+	let results = []
+	for (let i = 0; i < temperatures.length; i++) {
+		let temperature = temperatures[i]
+		let numsOfDaysUntilWarmerTemperature = 0
+		let foundWarmerTemperature = false
+		for (let j = i + 1; j < temperatures.length; j++) {
+			let otherTemperature = temperatures[j]
+			numsOfDaysUntilWarmerTemperature++
+			if (temperature < otherTemperature) {
+				foundWarmerTemperature = true
+				break
+			}
+		}
+
+		if (foundWarmerTemperature) results.push(numsOfDaysUntilWarmerTemperature)
+		else results.push(0)
+	}
+	return results
+}
