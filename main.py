@@ -2,21 +2,20 @@
 # class Solution:
 #     def permute(self, nums: List[int]) -> List[List[int]]:
 #         result = []
-        
+
 #         if len(nums) == 1:
 #             return [nums[:]]
-        
+
 #         for i in range(len(nums)):
 #             n = nums.pop(0)
 #             perms = self.permute(nums)
 #             for perm in perms:
 #                 perm.append(n)
-            
+
 #             nums.append(n)
 #             result.extend(perms)
-            
-#         return result
 
+#         return result
 
 
 # # Too sleepy to remove element
@@ -25,7 +24,7 @@
 #         p1 = 0
 #         p2 = 0
 #         k = 0
-        
+
 #         while p1 < len(nums) and p2 < len(nums):
 #             if val == nums[p2]:
 #                 nums[p1] = val
@@ -33,9 +32,8 @@
 #                 p1 += 1
 #                 k += 1
 #             p2 += 1
-                
-#         return k
 
+#         return k
 
 
 # // WIP
@@ -43,19 +41,18 @@
 #     def searchInsert(self, nums: List[int], target: int) -> int:
 #         l = 0
 #         r = len(nums)
-        
+
 #         while l < r:
 #             mid = int((l + r) / 2)
-            
+
 #             if nums[mid] == target:
 #                 return mid
 #             elif nums[mid] < target:
 #                 l = mid + 1
 #             elif target < nums[mid]:
 #                 r = mid - 1
-        
-#         return l
 
+#         return l
 
 
 # // WIP: Binary search off the top of my head
@@ -63,7 +60,7 @@
 #     def findNum(nums: List[int], target: int):
 #         l = 0
 #         r = len(nums) - 1
-        
+
 #         while l < mid:
 #             mid = r + l / 2
 
@@ -75,7 +72,6 @@
 #                 l = mid
 
 #         return -1
-
 
 
 # # Definition for a binary tree node.
@@ -92,7 +88,7 @@
 #         """
 #         if root == None:
 #             return []
-        
+
 #         pathsList = []
 #         rootIsLeaf = root.left == None and root.right == None
 #         if rootIsLeaf:
@@ -101,9 +97,8 @@
 #             pathsList = self.binaryTreePaths(root.left) + self.binaryTreePaths(root.right)
 #             for i in range(len(pathsList)):
 #                 pathsList[i] = str(root.val) + "->" + pathsList[i]
-                
-#         return pathsList
 
+#         return pathsList
 
 
 # class Solution(object):
@@ -114,7 +109,6 @@
 #         """
 #         if len(nums) < 3:
 #             return []
-
 
 
 # # Definition for a binary tree node.
@@ -135,14 +129,12 @@
 #         left = nums[middleIndex - 1]
 #         right = nums[len(nums) - 1]
 
-    
+
 #     def traverseArray(self, nums, tree, left, right):
 #         middleIndex = (left + right) / 2
 #         middle = nums[middleIndex]
 #         left = nums[middleIndex - 1]
 #         right = nums[right - 1]
-
-
 
 
 # class Solution(object):
@@ -161,14 +153,13 @@
 #                     solutions += potentialSolution
 #             elif balance > 0:
 #                 change(balance, coins)
-            
-            
+
+
 #         return len(solutions)
 
 
-
 # class Solution(object):
-    
+
 #     def change(self, amount, coins):
 #         """
 #         :type amount: int
@@ -179,7 +170,6 @@
 #             return 1
 #         if len(coins) == 0:
 #             return 0
-
 
 
 # class Solution(object):
@@ -193,9 +183,8 @@
 #             return ((high - low + 1) / 2) - 1
 #         elif low % 2 != 0 and high % 2 != 0:
 #             return ((high - low + 1) / 2) + 1
-        
-#         return ((high - low + 1) / 2)
 
+#         return ((high - low + 1) / 2)
 
 
 # def matrix_addition(a, b):
@@ -205,9 +194,8 @@
 #     for i in range(n):
 #         for j in range(n):
 #             result[i][j] = a[i][j] + b[i][j]
-            
-#     return result
 
+#     return result
 
 
 # class Solution(object):
@@ -223,7 +211,6 @@
 #         if num != val:
 
 
-
 # class Solution(object):
 #     def longestCommonPrefix(self, strs):
 #         """
@@ -234,11 +221,11 @@
 #         # Look at same char index for all elements in arr
 #         # if char index out of range or current char is different than the ones in this round so far, break
 #         # increase char index
-        
+
 #         ans = ""
 #         charIndex = 0
 #         stop = false
-        
+
 #         while(true):
 #             curChar = strs[0][charIndex]
 #             for (word in strs):
@@ -249,9 +236,8 @@
 #                 break
 #             charIndex += 1
 #             ans += curChar
-        
-#         return ans
 
+#         return ans
 
 
 # class Solution(object):
@@ -266,10 +252,10 @@
 #         # increase char index
 #         if len(strs) < 1 or len(strs[0]) < 1:
 #             return ""
-        
+
 #         ans = ""
 #         charIndex = 0
-        
+
 #         while(charIndex < len(strs[0])):
 #             curChar = strs[0][charIndex]
 #             for word in strs:
@@ -277,9 +263,8 @@
 #                     return ans
 #             charIndex += 1
 #             ans += curChar
-        
-#         return ans
 
+#         return ans
 
 
 # class Solution(object):
@@ -295,7 +280,6 @@
 #         return True
 
 
-
 # class Solution(object):
 #     def isPalindrome(self, x):
 #         """
@@ -304,7 +288,7 @@
 #         """
 #         if x < 0:
 #             return false
-        
+
 #         return str(x).reverse()
 #     def reverse(self, s):
 #         lenth = len(s)
@@ -314,7 +298,6 @@
 
 # def hello_world():
 #     print("Hello world!")
-
 
 
 class Solution(object):
@@ -338,8 +321,7 @@ class Solution(object):
         # Algorithm for signed integer
         # Turn integer into unsigned integer and store whether it was negative
         # Do algorithm for unsigned integer
-        # Return 
-
+        # Return
 
 
 class Solution(object):
@@ -353,14 +335,14 @@ class Solution(object):
                 return [seenNumbers[neededDiff], i]
         return [-1, -1]
 
+
 def disemvowel(string):
     vowels = 'aeiouAEIOU'
     new_string = ''
     for i in string:
         if i not in vowels:
-            new_string+= i 
+            new_string += i
     return new_string
-
 
 
 # Definition for a binary tree node.
@@ -374,3 +356,20 @@ class Solution:
         if root == None:
             return []
         return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
+
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        lastResultAsStr = str(n)
+        result = 0
+
+        while result != 1:
+            result = 0
+            for char in lastResultAsStr:
+                result += pow(int(char), 2)
+            resultAsStr = str(result)
+            if resultAsStr == lastResultAsStr:
+                break
+            lastResultAsStr = resultAsStr
+
+        return result == 1
