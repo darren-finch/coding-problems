@@ -373,3 +373,31 @@ class Solution:
             lastResultAsStr = resultAsStr
 
         return result == 1
+
+
+class Solution:
+    def answerQueries(self, nums: List[int], queries: List[int]) -> List[int]:
+        n = len(nums)
+        m = len(queries)
+
+        sumOfNums = 0
+        for num in nums:
+            sumOfNums += num
+
+        answer = []
+        for query in queries:
+            sumOfDeletedElementsForQuery = 0
+            deletedElements = {}
+
+            while query < sumOfNums - sumOfDeletedElementsForQuery:
+                smallestElementToDelete = nums[0]
+                for num in nums:
+                    if num < smallestElementToDelete and num not in deletedElements:
+                        smallestElementToDelete == num
+
+                deletedElements[smallestElementToDelete] = smallestElementToDelete
+                sumOfDeletedElementsForQuery += smallestElementToDelete
+
+            answer.append(n - len(deletedElements))
+
+        return answer
