@@ -401,3 +401,19 @@ class Solution:
             answer.append(n - len(deletedElements))
 
         return answer
+
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachableIndices = [False for i in range(len(nums))]
+        for j in range(len(nums)):
+            num = nums[j]
+
+            if num == 0 and j < len(nums) - 1 and reachableIndices[j + 1] == False:
+                return False
+
+            for k in range(j, j + num + 1):
+                if k < len(reachableIndices):
+                    reachableIndices[k] = True
+
+        return True
