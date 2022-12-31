@@ -417,3 +417,15 @@ class Solution:
                     reachableIndices[k] = True
 
         return True
+
+
+def make_readable(seconds):
+    hr = int(seconds / 3600)
+    min = int((seconds - (hr * 3600)) / 60)
+    sec = int(seconds - (hr * 3600) - (min * 60))
+
+    hrStr = str(hr) if hr > 9 else f'0{hr}'
+    minStr = str(min) if min > 9 else f'0{min}'
+    secStr = str(sec) if sec > 9 else f'0{sec}'
+
+    return f'{hrStr}:{minStr}:{secStr}'
