@@ -429,3 +429,7 @@ def make_readable(seconds):
     secStr = str(sec) if sec > 9 else f'0{sec}'
 
     return f'{hrStr}:{minStr}:{secStr}'
+
+
+def move_zeros(list):
+    return [num for num in list if num != 0] + [num for num in list if num == 0]
