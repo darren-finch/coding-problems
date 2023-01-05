@@ -433,3 +433,7 @@ def make_readable(seconds):
 
 def move_zeros(list):
     return [num for num in list if num != 0] + [num for num in list if num == 0]
+
+
+def zeros(n):
+    return int(n / 5)
