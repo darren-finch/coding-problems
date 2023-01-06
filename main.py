@@ -437,3 +437,26 @@ def move_zeros(list):
 
 def zeros(n):
     return int(n / 5)
+
+
+def is_valid_walk(walk):
+    if len(walk) != 10:
+        return False
+
+    verticalDirections = {
+        'n': 1,
+        's': -1
+    }
+    horizontalDirections = {
+        'w': 1,
+        'e': -1
+    }
+    verticalDelta = 0
+    horizontalDelta = 0
+    for direction in walk:
+        if direction in verticalDirections:
+            verticalDelta += verticalDirections[direction]
+        elif direction in horizontalDirections:
+            horizontalDelta += horizontalDirections[direction]
+
+    return verticalDelta == 0 and horizontalDelta == 0
