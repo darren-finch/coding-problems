@@ -460,3 +460,17 @@ def is_valid_walk(walk):
             horizontalDelta += horizontalDirections[direction]
 
     return verticalDelta == 0 and horizontalDelta == 0
+
+
+def find_it(seq):
+    seenNums = {}
+    for num in seq:
+        occurrencesCnt = seenNums[num] if num in seenNums else 0
+        seenNums[num] = occurrencesCnt + 1
+
+    for seenNum in seenNums.keys():
+        occurrencesCnt = seenNums[seenNum]
+        if occurrencesCnt % 2 != 0:
+            return seenNum
+
+    return -1
