@@ -474,3 +474,29 @@ def find_it(seq):
             return seenNum
 
     return -1
+
+
+def dirReduc(arr):
+    opposites = {
+        ("NORTH", "SOUTH"),
+        ("SOUTH", "NORTH"),
+        ("EAST", "WEST"),
+        ("WEST", "EAST")
+    }
+
+    while True:
+        p1 = 0
+        p2 = 1
+        lastLen = len(arr)
+        while p2 < len(arr):
+            if (arr[p1], arr[p2]) in opposites:
+                arr.remove(arr[p1])
+                arr.remove(arr[p2 - 1])
+            else:
+                p1 += 1
+                p2 += 1
+
+        if len(arr) == lastLen:
+            break
+
+    return arr
