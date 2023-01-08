@@ -500,3 +500,34 @@ def dirReduc(arr):
             break
 
     return arr
+
+
+def pig_it(text):
+    result = ''
+    firstLetterOfNextWord = ''
+    for i in range(len(text)):
+        char = text[i]
+
+        # With this implementation we assume no leading punctuation or whitespace.
+        if i == 0:
+            firstLetterOfWord = char
+        else:
+            lastChar = text[i - 1]
+            foundNewWord = char.isalpha() and not lastChar.isalpha()
+            foundEndOfWordBeforeEndOfText = (
+                not char.isalpha() and lastChar.isalpha())
+            foundEndOfWordAtEndOfText = (i == len(text) - 1 and char.isalpha())
+
+            if foundNewWord:
+                firstLetterOfWord = char
+                # This case will occur when a single letter appears at the end of the string.
+                if foundEndOfWordAtEndOfText:
+                    result = ''.join([result, firstLetterOfWord + 'ay' + char])
+            elif foundEndOfWordBeforeEndOfText:
+                result = ''.join([result, firstLetterOfWord + 'ay' + char])
+            elif foundEndOfWordAtEndOfText:
+                result = ''.join([result, char + firstLetterOfWord + 'ay'])
+            else:  # just a normal letter
+                result = ''.join([result, char])
+
+    return result
