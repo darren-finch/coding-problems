@@ -531,3 +531,7 @@ def pig_it(text):
                 result = ''.join([result, char])
 
     return result
+
+
+def parse_int(string):
+    return  # number
