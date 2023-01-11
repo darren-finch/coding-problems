@@ -535,3 +535,27 @@ def pig_it(text):
 
 def parse_int(string):
     return  # number
+
+
+def pick_peaks(arr):
+    if len(arr) < 3:
+        return {[], []}
+
+    pos = []
+    peaks = []
+    curPotentialMaximaIndex = i
+    for i in range(len(arr)):
+        if i == 0 or i == len(arr) - 1:
+            if element < arr[curPotentialMaximaIndex]:
+                pos.append(curPotentialMaximaIndex)
+                peaks.append(arr[curPotentialMaximaIndex])
+            continue
+
+        element = arr[i]
+        if element > arr[curPotentialMaximaIndex]:
+            curPotentialMaximaIndex = i
+        elif element < arr[curPotentialMaximaIndex]:
+            pos.append(curPotentialMaximaIndex)
+            peaks.append(arr[curPotentialMaximaIndex])
+
+    return {pos, peaks}
