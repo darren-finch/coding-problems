@@ -559,3 +559,26 @@ def pick_peaks(arr):
             peaks.append(arr[curPotentialMaximaIndex])
 
     return {pos, peaks}
+
+
+def dirReduc(arr):
+    opposites = {
+        ("EAST", "WEST"),
+        ("NORTH", "SOUTH"),
+        ("WEST", "EAST"),
+        ("SOUTH", "NORTH"),
+    }
+
+    p1 = 0
+    p2 = 1
+    while p2 < len(arr):
+        if (arr[0], arr[1]) in opposites:
+            arr = arr[:p1] + arr[p1] + arr[p1 + 1:len(arr)]
+            arr.remove(arr.index(p2))
+
+            if p2 > 1:
+                p1 -= 1
+                p2 -= 1
+        else:
+            p1 += 1
+            p2 += 1
