@@ -582,3 +582,22 @@ def dirReduc(arr):
         else:
             p1 += 1
             p2 += 1
+
+
+def same_structure_as(original, other):
+    print(f'original: {original}\nother: {other}')
+
+    if len(original) != len(other):
+        console.log('Is this reached')
+        return False
+
+    if (original is not list and other is not list):
+        return True
+
+    for i in range(len(original)):
+        originalElement = original[i]
+        otherElement = other[i]
+        if not same_structure_as(originalElement, otherElement):
+            return False
+
+    return True
