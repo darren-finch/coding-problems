@@ -601,3 +601,36 @@ def same_structure_as(original, other):
             return False
 
     return True
+
+
+class Interpreter:
+    def execute(self, programInstructionsAsStr):
+        for instructionAsStr in programInstructions:
+            instruction = Instruction
+
+
+instructionToClassMapping = {
+    'mov': MoveInstruction,
+    # WIP
+}
+
+
+class Instruction:
+    def __init__(self, string):
+        self.string = string
+
+
+class MoveInstruction(Instruction):
+    def __init__(self, string):
+        super.__init__(string)
+        self.arguments = string.
+
+
+def getProgramInstructionFromStr(string):
+    if string.startswith('mov'):
+        return MoveInstruction(string)
+
+
+def simple_assembler(program):
+    # return a dictionary with the registers
+    return {}
