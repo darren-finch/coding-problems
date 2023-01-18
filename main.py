@@ -634,3 +634,8 @@ def getProgramInstructionFromStr(string):
 def simple_assembler(program):
     # return a dictionary with the registers
     return {}
+
+def next_smaller(n):
+    # Strategy
+    # Potentiall bubble the smaller numbers towards the top
+    pass
