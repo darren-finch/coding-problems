@@ -623,7 +623,7 @@ class Instruction:
 class MoveInstruction(Instruction):
     def __init__(self, string):
         super.__init__(string)
-        self.arguments = string.
+        self.arguments = string
 
 
 def getProgramInstructionFromStr(string):
@@ -639,3 +639,19 @@ def next_smaller(n):
     # Strategy
     # Potentiall bubble the smaller numbers towards the top
     pass
+
+def to_underscore(string):
+    if type(string) == int or type(string) == float:
+        return str(string)
+    
+    result = ''
+    for i in range(len(string)):
+        char = string[i]
+        if char.isupper():
+            if i != 0:
+                result = ''.join([result, '_'])
+            result = ''.join([result, char.lower()])
+        else:
+            result = ''.join([result, char])
+            
+    return result
