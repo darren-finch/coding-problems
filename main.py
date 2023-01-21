@@ -635,15 +635,17 @@ def simple_assembler(program):
     # return a dictionary with the registers
     return {}
 
+
 def next_smaller(n):
     # Strategy
     # Potentiall bubble the smaller numbers towards the top
     pass
 
+
 def to_underscore(string):
     if type(string) == int or type(string) == float:
         return str(string)
-    
+
     result = ''
     for i in range(len(string)):
         char = string[i]
@@ -653,5 +655,20 @@ def to_underscore(string):
             result = ''.join([result, char.lower()])
         else:
             result = ''.join([result, char])
-            
+
     return result
+
+
+def loop_size(node):
+    curNode = node
+    seenNodes = {}
+    distanceFromStart = 0
+    while curNode != None:
+        if curNode in seenNodes:
+            return distanceFromStart - seenNodes[curNode]
+        else:
+            seenNodes[curNode] = distanceFromStart
+            distanceFromStart += 1
+        curNode = curNode.next
+
+    return 0
