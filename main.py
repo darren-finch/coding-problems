@@ -672,3 +672,10 @@ def loop_size(node):
         curNode = curNode.next
 
     return 0
+
+
+def exp_sum(n):
+    if n == 1:
+        return n
+
+    addend = n
