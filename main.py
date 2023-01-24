@@ -684,3 +684,13 @@ def exp_sum(n):
 # The retry of exp_sum was still not successful whatsoever lol.
 def exp_sum(n):
     pass
+
+
+def justify(text, width):
+    # Iterate through the characters
+    # When you pass enough characters that you go past the width, stop
+    # Once stopped, either try to iterate backward until you find a space.
+    # If instead of a space, you find the beginning of the array, that means you'll just have to break the word up (this case won't occur for this problem but it may in the future).
+    # Once you find where to break the sentence, start adding all the words up to the line break, and space them out how they need to be
+    # (this will be calculated from the number of letters crossed vs the number of spaces crossed when determining where to put the line break.)
+    pass
