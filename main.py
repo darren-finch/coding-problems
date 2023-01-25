@@ -694,3 +694,21 @@ def justify(text, width):
     # Once you find where to break the sentence, start adding all the words up to the line break, and space them out how they need to be
     # (this will be calculated from the number of letters crossed vs the number of spaces crossed when determining where to put the line break.)
     pass
+
+
+def justify(text, width):
+    # Input: abc abcde ab ab abcdefg
+    # Justify to 15 chars
+    # Output: abc abcde ab abcdefg
+
+    numOfCharsSeen = 0
+    numOfSpaces = 0
+    words = []
+
+    prevChar = None
+    for char in text:
+        numOfCharsSeen += 1
+        if char == ' ':
+            numOfSpaces += 1
+
+#         if prevChar == None or (prevChar == ' ' and char != ' '):
