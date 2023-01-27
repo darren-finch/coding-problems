@@ -712,3 +712,21 @@ def justify(text, width):
             numOfSpaces += 1
 
 #         if prevChar == None or (prevChar == ' ' and char != ' '):
+
+
+def find_outlier(integers):
+    evensCount = 0
+    evensSum = 0
+    oddsSum = 0
+
+    for num in integers:
+        if num % 2 == 0:
+            evensSum += num
+            evensCount += 1
+        else:
+            oddsSum += num
+
+    if evensCount == 1:
+        return evensSum
+    else:
+        return oddsSum
