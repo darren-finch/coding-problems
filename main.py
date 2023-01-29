@@ -730,3 +730,38 @@ def find_outlier(integers):
         return evensSum
     else:
         return oddsSum
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if root == None:
+            return []
+
+        ans = [[]]
+        curDepth = 0
+        queue = [(root, curDepth)]
+
+        while len(queue) > 0:
+            nextNodeDepthPair = queue.pop(0)
+            nextNode = nextNodeDepthPair[0]
+            nextNodeDepth = nextNodeDepthPair[1]
+
+            if nextNode.left:
+                queue.append((nextNode.left, nextNodeDepth + 1))
+            if nextNode.right:
+                queue.append((nextNode.right, nextNodeDepth + 1))
+
+            if curDepth == nextNodeDepth:
+                ans[curDepth].append(nextNode.val)
+            else:
+                ans.append([nextNode.val])
+                print(curDepth)
+                curDepth = nextNodeDepth
+
+        return ans
