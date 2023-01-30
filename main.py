@@ -765,3 +765,14 @@ class Solution:
                 curDepth = nextNodeDepth
 
         return ans
+
+    class Solution:
+        def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+            # Iterate over each item
+            #   For each item, iterate over each item again, exluding the current item from the first loop
+            #       For each item pair, check if the first item overlaps with the second
+            #       If they do, set the current merged pair = [min start of the two pairs, max finish of the two pairs]
+            #       If they don't, move on
+            #   Add current merged pair to output
+            # Return output
+            pass
