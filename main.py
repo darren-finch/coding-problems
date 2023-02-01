@@ -791,3 +791,16 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         # Probably use bFS
         pass
+
+
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        hammingDistance = 0
+
+        while x > 0 or y > 0:
+            if (x % 2 == 0 and y % 2 == 1) or (x % 2 == 1 and y % 2 == 0):
+                hammingDistance += 1
+            x = int(x / 2)
+            y = int(y / 2)
+
+        return hammingDistance
