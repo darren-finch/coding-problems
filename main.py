@@ -840,3 +840,8 @@ class Solution:
             if not ballStopped:
                 colsWithDroppedBall[startingCol] = curCol
         return colsWithDroppedBall
+
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        # Could not come up with solution in 15 mins but I tried
