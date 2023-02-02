@@ -804,3 +804,39 @@ class Solution:
             y = int(y / 2)
 
         return hammingDistance
+
+
+class Solution:
+    def findBall(self, grid: List[List[int]]) -> List[int]:
+        colsWithDroppedBall = [-1 for col in range(len(grid[0]))]
+
+        for startingCol in range(len(grid[0])):
+            curRow = 0
+            curCol = startingCol
+            ballStopped = False
+            while curRow < len(grid):
+                curElement = grid[curRow][curCol]
+                ballWillGoTowardsWall = (
+                    (curCol == 0 and curElement == -1) or (curCol == len(grid[0]) and curElement == 1))
+
+                if ballWillGoTowardsWall:
+                    ballStopped = True
+                    break
+
+                elementToLeft = grid[curRow][curCol -
+                                             1] if curCol > 0 else None
+                elementToRight = grid[curRow][curCol +
+                                              1] if curCol < len(grid[0]) - 1 else None
+                ballWillGoTowardsV = ((curElement == 1 and (elementToRight != 1 if elementToRight != None else True))
+                                      or (curElement == -1 and (elementToLeft != -1 if elementToLeft != None else True)))
+
+                if ballWillGoTowardsV:
+                    ballStopped = True
+                    break
+
+                curRow += 1
+                curCol += curElement
+
+            if not ballStopped:
+                colsWithDroppedBall[startingCol] = curCol
+        return colsWithDroppedBall
