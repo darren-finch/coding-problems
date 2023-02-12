@@ -778,15 +778,6 @@ class Solution:
             pass
 
 
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
-"""
-
-
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         # Probably use bFS
@@ -845,3 +836,8 @@ class Solution:
 class Solution:
     def isHappy(self, n: int) -> bool:
         # Could not come up with solution in 15 mins but I tried
+
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # candidates = [3,2,7,6], target = 7
