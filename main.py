@@ -836,8 +836,31 @@ class Solution:
 class Solution:
     def isHappy(self, n: int) -> bool:
         # Could not come up with solution in 15 mins but I tried
+        pass
 
 
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         # candidates = [3,2,7,6], target = 7
+        pass
+
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        if n == 1:
+            return True
+
+        seenNumbers = {}
+
+        while n not in seenNumbers and n != 1:
+            seenNumbers[n] = n
+            n = self._getSumOfSquaresOfDigits(n)
+
+        return n == 1
+
+    def _getSumOfSquaresOfDigits(self, n: int) -> int:
+        ans = 0
+        nAsStr = str(n)
+        for digit in nAsStr:
+            ans += pow(int(digit), 2)
+        return ans
