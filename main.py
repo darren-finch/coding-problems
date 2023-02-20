@@ -864,3 +864,49 @@ class Solution:
         for digit in nAsStr:
             ans += pow(int(digit), 2)
         return ans
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        prev = None
+        curr = head
+        currIndex = 0
+        next = head.next if head else None
+        firstNodeOfReversedSectionAfterReverse = None
+        lastNodeOfReversedSectionAfterReverse = None
+        nodeBeforeReversedSection = None
+        nodeAfterReversedSection = None
+
+        while currIndex <= right:
+            if left <= currIndex:
+                # If currIndex equals left, we don't need to link to prev node
+                if currIndex == left:
+                    lastNodeOfReversedSectionAfterReverse = curr
+                    nodeBeforeReversedSection = prev
+                    prev = None
+
+                if currIndex == right:
+                    firstNodeOfReversedSectionAfterReverse = curr
+                    nodeAfterReversedSection = next
+
+                # Reverse
+                curr.next = prev
+
+            # Move pointers
+            prev = curr
+            curr = next
+            currIndex += 1
+            next = next.next if next else None
+
+        lastNodeOfReversedSectionAfterReverse.next = nodeAfterReversedSection
+        if nodeBeforeReversedSection == None:
+            return firstNodeOfReversedSectionAfterReverse
+        else:
+            nodeBeforeReversedSection.next = firstNodeOfReversedSectionAfterReverse
+            return head
