@@ -910,3 +910,9 @@ class Solution:
         else:
             nodeBeforeReversedSection.next = firstNodeOfReversedSectionAfterReverse
             return head
+
+
+class Solution:
+    # [-5, 5, 5, -6]
+    def maxAbsoluteSum(self, nums: list[int]) -> int:
+        pass
