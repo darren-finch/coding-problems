@@ -916,3 +916,26 @@ class Solution:
     # [-5, 5, 5, -6]
     def maxAbsoluteSum(self, nums: list[int]) -> int:
         pass
+
+
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        # Return minimum number of jumps to reach end starting at startPos
+        def getMinJumpsToReachEndFromStartPos(startPos: int) -> int:
+            if len(nums) - 1 < startPos or nums[startPos] == 0:
+                return 1000000
+
+            if len(nums) - 1 == startPos:
+                return 0
+
+            maxPossibleJumpLen = min(nums[startPos], len(nums) - 1 - startPos)
+
+            minPossibleJumps = 1000000
+            for curJumpLen in range(maxPossibleJumpLen + 1, 1, -1):
+                minPossibleJumpsForCurJumpLen = 1 + \
+                    getMinJumpsToReachEndFromStartPos(startPos + curJumpLen)
+                if minPossibleJumpsForCurJumpLen < minPossibleJumps:
+                    minPossibleJumps = minPossibleJumpsForCurJumpLen
+
+            return minPossibleJumps
+        return getMinJumpsToReachEndFromStartPos(0)
