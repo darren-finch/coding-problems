@@ -939,3 +939,24 @@ class Solution:
 
             return minPossibleJumps
         return getMinJumpsToReachEndFromStartPos(0)
+
+
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return 1
+
+        wiggleIntervals = 0
+        lastDiff = None
+        i = 0
+
+        while i < len(nums) - 1:
+            curDiff = nums[i + 1] - nums[i]
+
+            if (i == 0 and curDiff != 0) or (lastDiff != None and ((curDiff > 0 and lastDiff < 0) or (curDiff < 0 and lastDiff > 0))):
+                lastDiff = curDiff
+                wiggleIntervals += 1
+
+            i += 1
+
+        return wiggleIntervals + 1
