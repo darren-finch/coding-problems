@@ -960,3 +960,9 @@ class Solution:
             i += 1
 
         return wiggleIntervals + 1
+
+
+class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        # I really tried. WIP
+        pass
