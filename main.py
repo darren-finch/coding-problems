@@ -966,3 +966,26 @@ class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
         # I really tried. WIP
         pass
+
+
+# Had to look at solution for this one, got stuck
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        # cbacdcbcabcd
+
+        lastOccurrences = {}
+        stack = []
+        visited = set()
+
+        for i in range(len(s)):
+            lastOccurrences[s[i]] = i
+
+        for i in range(len(s)):
+            if s[i] not in visited:
+                while 0 < len(stack) and s[i] < stack[-1] and i < lastOccurrences[stack[-1]]:
+                    visited.remove(stack.pop())
+
+                stack.append(s[i])
+                visited.add(s[i])
+
+        return ''.join(stack)
