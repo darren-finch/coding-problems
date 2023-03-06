@@ -989,3 +989,28 @@ class Solution:
                 visited.add(s[i])
 
         return ''.join(stack)
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        p1 = 0
+        p2 = 1
+        minLen = len(nums)
+        minLenWasSet = False
+        curSum = nums[0]
+
+        while p2 < len(nums):
+            curSum += nums[p2]
+
+            while target <= curSum - nums[p1] and p1 < p2:
+                curSum -= nums[p1]
+                p1 += 1
+
+            potentialNextMinLen = p2 - p1 + 1
+            if target <= curSum and potentialNextMinLen <= minLen:
+                minLen = potentialNextMinLen
+                minLenWasSet = True
+
+            p2 += 1
+
+        return minLen if minLenWasSet else 0
