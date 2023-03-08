@@ -1014,3 +1014,79 @@ class Solution:
             p2 += 1
 
         return minLen if minLenWasSet else 0
+
+# Below is the interface for Iterator, which is already defined for you.
+#
+# class Iterator:
+#     def __init__(self, nums):
+#         """
+#         Initializes an iterator object to the beginning of a list.
+#         :type nums: List[int]
+#         """
+#
+#     def hasNext(self):
+#         """
+#         Returns true if the iteration has more elements.
+#         :rtype: bool
+#         """
+#
+#     def next(self):
+#         """
+#         Returns the next element in the iteration.
+#         :rtype: int
+#         """
+
+# nums = []
+# iter.next = None
+# next = None
+
+
+class PeekingIterator:
+    def __init__(self, iterator):
+        """
+        Initialize your data structure here.
+        :type iterator: Iterator
+        """
+        self.iterator = iterator
+        self.next = None
+
+    def peek(self):
+        """
+        Returns the next element in the iteration without advancing the iterator.
+        :rtype: int
+        """
+        if self.next == None and self.iterator.hasNext():
+            self.next = self.iterator.next()
+
+        print("call to peek with ret val = " + self.next)
+
+        return self.next
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        prevNext = self.next
+
+        if self.next == None and self.iterator.hasNext():
+            self.next = self.iterator.next()
+            prevNext = self.next
+
+        if self.iterator.hasNext():
+            self.next = self.iterator.next()
+
+        print("call to next with ret val = " + prevNext)
+        return prevNext
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.next != None or self.iterator.hasNext()
+
+
+# Your PeekingIterator object will be instantiated and called as such:
+# iter = PeekingIterator(Iterator(nums))
+# while iter.hasNext():
+#     val = iter.peek()   # Get the next element but not advance the iterator.
+#     iter.next()         # Should return the same value as [val].
