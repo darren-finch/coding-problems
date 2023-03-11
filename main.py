@@ -1090,3 +1090,41 @@ class PeekingIterator:
 # while iter.hasNext():
 #     val = iter.peek()   # Get the next element but not advance the iterator.
 #     iter.next()         # Should return the same value as [val].
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        if head == None:
+            return None
+
+        listAsArr = self.sortedListToArr(head)
+        return self.sortedArrToBST(listAsArr, 0, len(listAsArr) - 1)
+
+    def sortedListToArr(self, head: Optional[ListNode]):
+        arr = []
+
+        curr = head
+        while curr:
+            arr.append(curr.val)
+            curr = curr.next
+
+        return arr
+
+    def sortedArrToBST(self, arr, left, right):
+        if right < left:
+            return None
+        if left == right:
+            return TreeNode(arr[left], None, None)
+
+        mid = (left + right) // 2
+        return TreeNode(arr[mid], self.sortedArrToBST(arr, left, mid - 1), self.sortedArrToBST(arr, mid + 1, right))
