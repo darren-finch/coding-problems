@@ -1128,3 +1128,26 @@ class Solution:
 
         mid = (left + right) // 2
         return TreeNode(arr[mid], self.sortedArrToBST(arr, left, mid - 1), self.sortedArrToBST(arr, mid + 1, right))
+
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        ans = 0
+
+        for i in range(len(height)):
+            while 0 < len(stack) and height[stack[-1]] < height[i]:
+                poppedHeightIndex = stack.pop()
+
+                if len(stack) == 0:
+                    break
+
+                # THIS IS WHERE ALGORITHM NEEDS FIXING.
+                heightDiff = height[i] - \
+                    (height[stack[-1]] - height[poppedHeightIndex])
+                indexDiff = i - stack[-1]
+
+                ans += heightDiff * indexDiff
+            stack.append(i)
+
+        return ans
