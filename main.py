@@ -1151,3 +1151,35 @@ class Solution:
             stack.append(i)
 
         return ans
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        totalRainwaterVolume = 0
+
+        for i in range(len(height)):
+            while 0 < len(stack) and height[stack[-1]] < height[i]:
+                poppedElem = stack.pop()
+
+                # At the base of a hill with no previously greater height behind us, nothing needs to be done.
+                if len(stack) == 0:
+                    break
+
+                # We know we just popped off an element of the stack that was less than the current element.
+                # We also know that because the stack is a monotonically decreasing stack, that the previous element must be greater than the popped element.
+                # Therefore, we know that rainwater could be stored between the current element and the new last element of the stack.
+                #
+                # The important thing to understand is that we calculate rainwater moving from the bottom right to the top left.
+                # Therefore, at this point, all rainwater at heights <= height[poppedElem] between stack[-1] and poppedElem has been calculated.
+                # Therefore, to get the height of the rainwater container we are currently looking at,
+                # we need to take the minimum of either stack[-1] or height[i] and subtract the height of the popped element.
+                heightDiff = min(height[stack[-1]], height[i]) - height[poppedElem]
+
+                indexDiff = i - (stack[-1] + 1)
+
+                rainwaterVolume = heightDiff * indexDiff
+                totalRainwaterVolume += rainwaterVolume
+            
+            stack.append(i)
+
+        return totalRainwaterVolume
