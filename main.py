@@ -1183,3 +1183,22 @@ class Solution:
             stack.append(i)
 
         return totalRainwaterVolume
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        output = ''
+        temp = ''
+
+        for char in s:
+            if char.isdigit():
+                stack.append([int(char), ''])
+            elif char == ']':
+                lastElem = stack.pop()
+                temp = ''.join([lastElem[1] for i in range(lastElem[0])]) + temp
+                if len(stack) == 0:
+                    output += temp
+            elif char != '[':
+                print(stack)
+                stack[-1][1] += char
+        return output
