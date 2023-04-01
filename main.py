@@ -1202,3 +1202,37 @@ class Solution:
                 print(stack)
                 stack[-1][1] += char
         return output
+
+import queue
+
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        # Solution is:
+        # O(n) time complexity
+        # O(3n) space complexity
+        # Inspired by Dijkstra
+
+        infinity = 1000
+
+        queue = Queue()
+        queue.put((0, 0))
+        visited = set()
+
+        # for i in range(len(grid)):
+        #     for j in range(len(grid[i])):
+        #         unvisited.add((i, j))
+
+        minPathSums = [[1000 for j in range(len(grid[i]))] for i in range(len(grid))]
+        minPathSums[0][0] = grid[0][0]
+
+        while not queue.empty():
+            curElemRow, curElemCol = queue.get()
+            curElemValue = grid[curElemRow][curElemCol]
+
+            # Check if path sum from this element will be less than the path sums
+            # found by reaching neighbor a different way.
+            if minPathSums[curElemRow + 1][curElemCol]
+
+        lastRowIndex = len(minPathSums) - 1
+        lastColumnIndex = len(minPathSums[lastRowIndex]) - 1
+        return minPathSums[lastRowIndex][lastColumnIndex]
