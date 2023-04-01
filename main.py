@@ -300,6 +300,9 @@
 #     print("Hello world!")
 
 
+import queue
+
+
 class Solution(object):
     def reverse(self, x):
         """
@@ -1152,6 +1155,7 @@ class Solution:
 
         return ans
 
+
 class Solution:
     def trap(self, height: List[int]) -> int:
         stack = []
@@ -1173,16 +1177,18 @@ class Solution:
                 # Therefore, at this point, all rainwater at heights <= height[poppedElem] between stack[-1] and poppedElem has been calculated.
                 # Therefore, to get the height of the rainwater container we are currently looking at,
                 # we need to take the minimum of either stack[-1] or height[i] and subtract the height of the popped element.
-                heightDiff = min(height[stack[-1]], height[i]) - height[poppedElem]
+                heightDiff = min(height[stack[-1]],
+                                 height[i]) - height[poppedElem]
 
                 indexDiff = i - (stack[-1] + 1)
 
                 rainwaterVolume = heightDiff * indexDiff
                 totalRainwaterVolume += rainwaterVolume
-            
+
             stack.append(i)
 
         return totalRainwaterVolume
+
 
 class Solution:
     def decodeString(self, s: str) -> str:
@@ -1195,7 +1201,8 @@ class Solution:
                 stack.append([int(char), ''])
             elif char == ']':
                 lastElem = stack.pop()
-                temp = ''.join([lastElem[1] for i in range(lastElem[0])]) + temp
+                temp = ''.join([lastElem[1]
+                               for i in range(lastElem[0])]) + temp
                 if len(stack) == 0:
                     output += temp
             elif char != '[':
@@ -1203,7 +1210,6 @@ class Solution:
                 stack[-1][1] += char
         return output
 
-import queue
 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
@@ -1222,7 +1228,8 @@ class Solution:
         #     for j in range(len(grid[i])):
         #         unvisited.add((i, j))
 
-        minPathSums = [[1000 for j in range(len(grid[i]))] for i in range(len(grid))]
+        minPathSums = [[1000 for j in range(len(grid[i]))]
+                       for i in range(len(grid))]
         minPathSums[0][0] = grid[0][0]
 
         while not queue.empty():
@@ -1236,3 +1243,20 @@ class Solution:
         lastRowIndex = len(minPathSums) - 1
         lastColumnIndex = len(minPathSums[lastRowIndex]) - 1
         return minPathSums[lastRowIndex][lastColumnIndex]
+
+
+class Solution:
+    def divisorSubstrings(self, num: int, k: int) -> int:
+        kbeauty = 0
+        start = 0
+        end = k
+        numAsStr = str(num)
+
+        while end <= len(numAsStr):
+            numFromSlidingWindow = int(numAsStr[start:end])
+            if numFromSlidingWindow != 0 and num % numFromSlidingWindow == 0:
+                kbeauty += 1
+            start += 1
+            end += 1
+
+        return kbeauty
