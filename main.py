@@ -1238,7 +1238,7 @@ class Solution:
 
             # Check if path sum from this element will be less than the path sums
             # found by reaching neighbor a different way.
-            if minPathSums[curElemRow + 1][curElemCol]
+            # if minPathSums[curElemRow + 1][curElemCol]
 
         lastRowIndex = len(minPathSums) - 1
         lastColumnIndex = len(minPathSums[lastRowIndex]) - 1
@@ -1300,4 +1300,73 @@ class Solution:
             for character in string:
                 letterFrequencyMap[character] += 1
 
-        if
+        # if
+
+# my original solution to group anagrams
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        letterFrequencyMapsToBucketIndices = {}
+        buckets = []
+
+        for string in strs:
+            letterFrequencyMap = {
+                "a": 0,
+                "b": 0,
+                "c": 0,
+                "d": 0,
+                "e": 0,
+                "f": 0,
+                "g": 0,
+                "h": 0,
+                "i": 0,
+                "j": 0,
+                "k": 0,
+                "l": 0,
+                "m": 0,
+                "n": 0,
+                "o": 0,
+                "p": 0,
+                "q": 0,
+                "r": 0,
+                "s": 0,
+                "t": 0,
+                "u": 0,
+                "v": 0,
+                "w": 0,
+                "x": 0,
+                "y": 0,
+                "z": 0,
+            }
+
+            for character in string:
+                letterFrequencyMap[character] += 1
+
+            letterFrequencyMapAsStr = str(letterFrequencyMap)
+
+            if letterFrequencyMapAsStr in letterFrequencyMapsToBucketIndices:
+                bucketIndex = letterFrequencyMapsToBucketIndices[letterFrequencyMapAsStr]
+                buckets[bucketIndex].append(string)
+            else:
+                buckets.append([string])
+                letterFrequencyMapsToBucketIndices[letterFrequencyMapAsStr] = len(
+                    buckets) - 1
+
+        return buckets
+
+# the better solution to grouping anagrams
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        sortedStringsToAnagrams = {}
+
+        for string in strs:
+            sortedString = ''.join(sorted(string))
+            if sortedString in sortedStringsToAnagrams:
+                sortedStringsToAnagrams[sortedString].append(string)
+            else:
+                sortedStringsToAnagrams[sortedString] = [string]
+
+        return sortedStringsToAnagrams.values()
