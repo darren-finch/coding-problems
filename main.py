@@ -1370,3 +1370,37 @@ class Solution:
                 sortedStringsToAnagrams[sortedString] = [string]
 
         return sortedStringsToAnagrams.values()
+
+from queue import *
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+
+        visited = [[False for i in range(n)] for i in range(m)]
+        numOfIslands = 0
+            
+        for i in range(m):
+            for j in range(n):
+                if not visited[i][j] and grid[i][j] == 1:
+                    queue = Queue()
+                    queue.put((i, j))
+                    while not queue.empty():
+                        i2, j2 = queue.get()
+
+                        # Put neighbors in queue
+                        if -1 < i2 - 1 and grid[i2 - 1][j2] == 1 and not visited[i2 - 1][j2]:
+                            queue.put((i2 - 1, j2))
+                        if i2 + 1 < m and grid[i2 + 1][j2] == 1 and not visited[i2 + 1][j2]:
+                            queue.put((i2 + 1, j2))
+                        if -1 < j2 - 1 and grid[i2][j2 - 1] == 1 and not visited[i2][j2 - 1]:
+                            queue.put((i2, j2 - 1))
+                        if j2 + 1 < n and grid[i2][j2 + 1] == 1 and not visited[i2][j2 - 1] == 1:
+                            queue.put((i2, j2 + 1))
+                        
+                        visited[i2][j2] = True
+                    
+                    numOfIslands += 1
+
+        return numOfIslands
