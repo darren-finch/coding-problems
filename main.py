@@ -300,6 +300,7 @@
 #     print("Hello world!")
 
 
+from queue import *
 import queue
 
 
@@ -1371,7 +1372,6 @@ class Solution:
 
         return sortedStringsToAnagrams.values()
 
-from queue import *
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
@@ -1380,7 +1380,7 @@ class Solution:
 
         visited = [[False for i in range(n)] for i in range(m)]
         numOfIslands = 0
-            
+
         for i in range(m):
             for j in range(n):
                 if not visited[i][j] and grid[i][j] == 1:
@@ -1398,9 +1398,21 @@ class Solution:
                             queue.put((i2, j2 - 1))
                         if j2 + 1 < n and grid[i2][j2 + 1] == 1 and not visited[i2][j2 - 1] == 1:
                             queue.put((i2, j2 + 1))
-                        
+
                         visited[i2][j2] = True
-                    
+
                     numOfIslands += 1
 
         return numOfIslands
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        seen = {}
+        for i, num in enumerate(nums):
+            secondNum = target - num
+            if secondNum in seen:
+                return [i, seen[secondNum]]
+            else:
+                seen[i] = secondNum
+        return [-1, -1]
