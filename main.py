@@ -1416,3 +1416,48 @@ class Solution(object):
             else:
                 seen[i] = secondNum
         return [-1, -1]
+
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+
+        seen = [[False for j in range(n)] for i in range(m)]
+        numOfIslands = 0
+
+        for i in range(m):
+            for j in range(n):
+                if self.isUnvisitedPartOfIsland(i, j, grid, seen):
+                    queue = Queue()
+                    queue.put((i, j))
+
+                    while not queue.empty():
+                        i2, j2 = queue.get()
+                        seen[i2][j2] = True
+                        self.addNeighborsToQueue(
+                            i2, j2, m, n, grid, seen, queue)
+
+                    # Once queue is empty, it means we found every one that is connected to this one.
+                    # Therefore, we have explored the whole island and found the boundaries.
+                    # So we need to increase the number of islands by one.
+                    numOfIslands += 1
+
+        return numOfIslands
+
+    def addNeighborsToQueue(self, i: int, j: int, m: int, n: int, grid: List[List[str]], seen: List[List[bool]], queue: Queue):
+        if 0 <= i - 1 and self.isUnvisitedPartOfIsland(i - 1, j, grid, seen):
+            queue.put((i - 1, j))
+            seen[i - 1][j] = True
+        if i + 1 < m and self.isUnvisitedPartOfIsland(i + 1, j, grid, seen):
+            queue.put((i + 1, j))
+            seen[i + 1][j] = True
+        if 0 <= j - 1 and self.isUnvisitedPartOfIsland(i, j - 1, grid, seen):
+            queue.put((i, j - 1))
+            seen[i][j - 1] = True
+        if j + 1 < n and self.isUnvisitedPartOfIsland(i, j + 1, grid, seen):
+            queue.put((i, j + 1))
+            seen[i][j + 1] = True
+
+    def isUnvisitedPartOfIsland(self, i: int, j: int, grid: List[List[str]], seen: List[List[bool]]) -> bool:
+        return (not seen[i][j]) and grid[i][j] == "1"
