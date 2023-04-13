@@ -1461,3 +1461,20 @@ class Solution:
 
     def isUnvisitedPartOfIsland(self, i: int, j: int, grid: List[List[str]], seen: List[List[bool]]) -> bool:
         return (not seen[i][j]) and grid[i][j] == "1"
+
+
+class Solution:
+    def smallestRangeI(self, nums: List[int], k: int) -> int:
+        minNum = None
+        maxNum = None
+
+        for num in nums:
+            if minNum == None or num < minNum:
+                minNum = num
+            if maxNum == None or maxNum < num:
+                maxNum = num
+
+        result1 = min(minNum + k, maxNum)
+        result2 = max(maxNum - k, result1)
+
+        return result2 - result1
