@@ -1478,3 +1478,33 @@ class Solution:
         result2 = max(maxNum - k, result1)
 
         return result2 - result1
+
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        sArr = [char for char in s]
+        vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+        l = 0
+        r = len(s) - 1
+
+        while True:
+            # Bring both pointers to a vowel
+            while l < r and not (sArr[l] in vowels and sArr[r] in vowels):
+                if sArr[l] not in vowels:
+                    l += 1
+                if sArr[r] not in vowels:
+                    r -= 1
+
+            if r < l:
+                break
+
+            # Swap sArr[l] and sArr[r]
+            temp = sArr[l]
+            sArr[l] = sArr[r]
+            sArr[r] = temp
+
+            # Move both pointers off of the vowel they were on
+            l += 1
+            r -= 1
+
+        return ''.join(sArr)
