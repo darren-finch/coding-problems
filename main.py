@@ -1508,3 +1508,31 @@ class Solution:
             r -= 1
 
         return ''.join(sArr)
+
+
+class Solution:
+    def findMatrix(self, nums: List[int]) -> List[List[int]]:
+        numsToNumOfOccurences = {}
+        curRowElements = set()
+        ans = []
+
+        # Populate numsToNumOfOccurences
+        for num in nums:
+            if num in numsToNumOfOccurences:
+                numsToNumOfOccurences[num] += 1
+            else:
+                numsToNumOfOccurences[num] = 1
+
+        while 0 < len(numsToNumOfOccurences):
+            ans.append([])
+            for num in nums:
+                if num in numsToNumOfOccurences and num not in curRowElements:
+                    ans[-1].append(num)
+                    numsToNumOfOccurences[num] -= 1
+                    if numsToNumOfOccurences[num] < 1:
+                        del numsToNumOfOccurences[num]
+                    if len(numsToNumOfOccurences) < 1:
+                        return ans
+                    curRowElements.add(num)
+            curRowElements.clear()
+        return ans
