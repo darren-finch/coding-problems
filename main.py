@@ -1536,3 +1536,43 @@ class Solution:
                     curRowElements.add(num)
             curRowElements.clear()
         return ans
+
+
+class Solution:
+    def countSubstrings(self, s: str, t: str) -> int:
+        ps, pss, pt, diff, ans = (0, 0, 0, 0, 0)
+
+        print("s: ", s)
+        print("t: ", t)
+        while ps < len(s) or pt < len(t):
+            if len(t) <= pt:
+                pss += 1
+
+                if len(s) <= pss:
+                    break
+
+                ps = pss
+                pt = 0
+
+                # Not sure whether this is necessary or not, but I think so.
+                diff = 0
+
+            if s[ps] != t[pt]:
+                diff += 1
+
+                if diff == 1:
+                    ans += 1
+                    print("diff 1: ", (ps, pt, diff, ans))
+                    ps += 1
+                else:
+                    diff = 0
+                    print("diff 0: ", (ps, pt, diff, ans))
+                    ps = pss
+            else:
+                diff = 0
+
+            if len(s) <= ps:
+                ps = pss
+            pt += 1
+
+        return ans
