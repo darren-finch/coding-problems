@@ -1576,3 +1576,61 @@ class Solution:
             pt += 1
 
         return ans
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+class Solution:
+    def rob(self, root: Optional[TreeNode]) -> int:
+        # Base case: root is a leaf, return root.val
+        # RR case 1: root has one child, return max(root + (rob(child) used child as max ? 0 : rob(child)), rob(child))
+        # RR case 2: root has two children,
+        # return max(
+        #       root + (rob(left) used left child as max ? 0 : rob(left)),
+        #       root + (rob(right) used right as max ? 0 : rob(right)),
+        #       rob(left) + rob(right))
+        return self.robInner(root)[0]
+
+    # Returns a tuple with two values:
+    # (max amt of money without alerting police given root, whether the root was used to determine max amt of money)
+    def robInner(self, root: Optional[TreeNode]) -> (int, bool):
+        if root.left == None and root.right == None:
+            ans = root.val
+            print(
+                f'root: {root.val}, left: {root.left.val if root.left else None}, right: {root.right.val if root.right else None}, ans: {ans}')
+            return (root.val, True)
+
+        usedRoot = False
+
+        maxMoneyLeft, usedRootLeft = (0, False)
+        maxMoneyRight, usedRootRight = (0, False)
+
+        valLeft = root.val
+        if root.left != None:
+            maxMoneyLeft, usedRootLeft = self.robInner(root.left)
+            if not usedRootLeft:
+                valLeft += maxMoneyLeft
+
+        valRight = root.val
+        if root.right != None:
+            maxMoneyRight, usedRootRight = self.robInner(root.right)
+            if not usedRootRight:
+                valRight += maxMoneyRight
+
+        # valRootPlusLeftAndRight =
+
+        valAddedChildren = maxMoneyLeft + maxMoneyRight
+
+        if valRight > valAddedChildren or valLeft > valAddedChildren:
+            usedRoot = True
+
+        ans = max(valRight, valLeft, valAddedChildren)
+
+        print(f'root: {root.val}, left: {root.left.val if root.left else None}, right: {root.right.val if root.right else None}, ans: {ans}')
+
+        return (ans, usedRoot)
