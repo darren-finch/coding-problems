@@ -1649,3 +1649,21 @@ class Solution:
         else:
             self.mem[n] = self.fib(n - 1) + self.fib(n - 2)
             return self.mem[n]
+
+
+class Solution:
+    def __init__(self):
+        self.mem = {}
+
+    def tribonacci(self, n: int) -> int:
+        if n == 0 or n == 1:
+            return n
+        if n == 2:
+            return 1
+
+        if n in self.mem:
+            return self.mem[n]
+        else:
+            self.mem[n] = self.tribonacci(
+                n - 1) + self.tribonacci(n - 2) + self.tribonacci(n - 3)
+            return self.mem[n]
