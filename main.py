@@ -1682,3 +1682,25 @@ class Solution:
         else:
             self.mem[n] = self.climbStairs(n - 1) + self.climbStairs(n - 2)
             return self.mem[n]
+
+
+class Solution:
+    def __init__(self):
+        self.mem = {}
+
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        return self.getCostOfArrivingToAndLeavingStep(cost, len(cost))
+
+    def getCostOfArrivingToAndLeavingStep(self, cost: List[int], i: int) -> int:
+        if i == 0 or i == 1:
+            return cost[i]
+
+        if i not in self.mem:
+            self.mem[i] = (
+                min(
+                    self.getCostOfArrivingToAndLeavingStep(cost, i - 1),
+                    self.getCostOfArrivingToAndLeavingStep(cost, i - 2)
+                ) + (cost[i] if i < len(cost) else 0)
+            )
+
+        return self.mem[i]
