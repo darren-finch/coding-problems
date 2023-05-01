@@ -300,6 +300,7 @@
 #     print("Hello world!")
 
 
+from queue import Queue
 from queue import *
 import queue
 
@@ -1704,3 +1705,51 @@ class Solution:
             )
 
         return self.mem[i]
+
+
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        # Find the island
+        # Do a BFS to find all squares in the island
+        # For each side of each square, check if the adjacent square is a 1 or a 0.
+        # - If it is a 1, don't add that side to the perimeter, if it is a 0, do add that side.
+        # - Also, if checking the adjacent square is out of bounds of the array, do add that side.
+        # Continue until your BFS queue is empty
+        # Return perimter
+        perimeter = 0
+
+        firstSquareWithAOne = None
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == 1:
+                    firstSquareWithAOne = (i, j)
+
+        queue = Queue()
+        queue.put(firstSquareWithAOne)
+        while not queue.empty():
+            nextSquare = queue.get()
+            print(nextSquare)
+            row = nextSquare[0]
+            col = nextSquare[1]
+
+            if (row - 1 < 0 or grid[row - 1][col] == 0):
+                perimeter += 1
+            elif (0 <= row - 1):
+                queue.put((row - 1, col))
+
+            if (len(grid) <= row + 1 or grid[row + 1][col] == 0):
+                perimeter += 1
+            elif (row + 1 < len(grid)):
+                queue.put((row + 1, col))
+
+            if (col - 1 < 0 or grid[row][col - 1] == 0):
+                perimeter += 1
+            elif (0 <= col - 1):
+                queue.put((row, col - 1))
+
+            if (len(grid[row]) <= col + 1 or grid[row][col + 1] == 0):
+                perimeter += 1
+            elif (col + 1 < len(grid[row])):
+                queue.put((row, col + 1))
+
+        return perimeter
