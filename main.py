@@ -1817,3 +1817,37 @@ class Codec:
 # tree = ser.serialize(root)
 # ans = deser.deserialize(tree)
 # return ans
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        p1, p2, pAns = l1, l2, None
+        ansHead = None
+        carry = 0
+
+        while p1 != None or p2 != None:
+            curSum = (p1.val if p1 != None else 0) + \
+                (p2.val if p2 != None else 0) + carry
+            carry, digit = divmod(curSum, 10)
+
+            if pAns == None:
+                pAns = ListNode(digit)
+                ansHead = pAns
+            else:
+                pAns.next = ListNode(digit)
+                pAns = pAns.next
+
+            if p1 != None:
+                p1 = p1.next
+            if p2 != None:
+                p2 = p2.next
+
+        if 0 < carry:
+            pAns.next = ListNode(carry)
+
+        return ansHead
