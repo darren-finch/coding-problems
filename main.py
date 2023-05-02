@@ -300,6 +300,7 @@
 #     print("Hello world!")
 
 
+from collections import deque
 from queue import Queue
 from queue import *
 import queue
@@ -1753,3 +1754,66 @@ class Solution:
                 queue.put((row, col + 1))
 
         return perimeter
+
+
+MAX_NODE_VAL = float('infinity')
+
+
+class Codec:
+    def __init__(self):
+        self.encodedStr = ""
+
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        self.encodedStr = ""
+        self.serializeInternal(root)
+        print(self.encodedStr)
+        return self.encodedStr
+
+    def serializeInternal(self, root: Optional[TreeNode]):
+        if root == None:
+            return
+
+        self.encodedStr = "".join([self.encodedStr, str(root.val), ","])
+        self.serializeInternal(root.left)
+        self.serializeInternal(root.right)
+
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        if data == "":
+            return None
+
+        treeQueue = deque()
+        treeNodes = [int(node) for node in data.split(',') if node != ""]
+        for node in treeNodes:
+            treeQueue.append(node)
+
+        return self.deserializeInternal(treeQueue, MAX_NODE_VAL)
+
+    def deserializeInternal(self, treeQueue: deque, upperBound: int) -> Optional[TreeNode]:
+        if len(treeQueue) == 0:
+            return None
+
+        nextElement = treeQueue[0]
+        # We don't have to check for the case when upper bound == next element
+        # because we are guaranteed that the input will be a binary search tree.
+        if upperBound < nextElement:
+            return None
+
+        root = TreeNode(treeQueue.popleft())
+        root.left = self.deserializeInternal(treeQueue, root.val)
+        root.right = self.deserializeInternal(treeQueue, upperBound)
+        return root
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Your Codec object will be instantiated and called as such:
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# tree = ser.serialize(root)
+# ans = deser.deserialize(tree)
+# return ans
