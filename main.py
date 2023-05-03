@@ -1906,3 +1906,33 @@ class Solution:
                 grid[row][col + 1] = 2
 
         return perimeter
+
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        # Find first element at index k where nums[k] < nums[k + 1]
+        indexOfMinAbsVal = 0
+        for i in range(len(nums)):
+            if abs(nums[i]) < abs(nums[indexOfMinAbsVal]):
+                indexOfMinAbsVal = i
+
+        left, right = indexOfMinAbsVal - 1, indexOfMinAbsVal
+        res = []
+        while 0 <= left or right < len(nums):
+            sqLeft = pow(nums[left], 2) if 0 <= left else None
+            sqRight = pow(nums[right], 2) if right < len(nums) else None
+
+            if sqLeft == None:
+                res.append(sqRight)
+                right += 1
+            elif sqRight == None:
+                res.append(sqLeft)
+                left -= 1
+            elif sqLeft < sqRight:
+                res.append(sqLeft)
+                left -= 1
+            else:
+                res.append(sqRight)
+                right += 1
+
+        return res
