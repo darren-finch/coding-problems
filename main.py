@@ -1851,3 +1851,58 @@ class Solution:
             pAns.next = ListNode(carry)
 
         return ansHead
+
+
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        dq = deque()
+        stop = False
+        for row in range(len(grid)):
+            if stop:
+                break
+
+            for col in range(len(grid[row])):
+                if grid[row][col] == 1:
+                    dq.append((row, col))
+
+                    # Mark starting element as looked at
+                    grid[row][col] = 2
+
+                    stop = True
+
+                    break
+
+        perimeter = 0
+
+        while 0 < len(dq):
+            row, col = dq.popleft()
+
+            # Top
+            if row - 1 < 0 or grid[row - 1][col] == 0:
+                perimeter += 1
+            elif grid[row - 1][col] == 1:
+                dq.append((row - 1, col))
+                grid[row - 1][col] = 2
+
+            # Bottom
+            if len(grid) <= row + 1 or grid[row + 1][col] == 0:
+                perimeter += 1
+            elif grid[row + 1][col] == 1:
+                dq.append((row + 1, col))
+                grid[row + 1][col] = 2
+
+            # Left
+            if col - 1 < 0 or grid[row][col - 1] == 0:
+                perimeter += 1
+            elif grid[row][col - 1] == 1:
+                dq.append((row, col - 1))
+                grid[row][col - 1] = 2
+
+            # Right
+            if len(grid[row]) <= col + 1 or grid[row][col + 1] == 0:
+                perimeter += 1
+            elif grid[row][col + 1] == 1:
+                dq.append((row, col + 1))
+                grid[row][col + 1] = 2
+
+        return perimeter
