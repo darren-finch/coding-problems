@@ -1936,3 +1936,25 @@ class Solution:
                 right += 1
 
         return res
+
+
+class Solution:
+    # [4,5,6,7,8,9,10,0,0,0]
+    # [1,2,3]
+
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        p1 = 0
+        p2 = 0
+        while p1 < len(nums1):
+            if m == p1 or n - 1 < p2:
+                p2 = 0
+
+            if nums2[p2] < nums1[p1] or m - 1 < p1:
+                temp = nums1[p1]
+                nums1[p1] = nums2[p2]
+                nums2[p2] = temp
+                p2 += 1
+
+            p1 += 1
+
+        return nums1
