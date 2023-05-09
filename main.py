@@ -1975,3 +1975,41 @@ class Solution:
                 return True
 
         return False
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()
+
+        left = 0
+        while left < len(nums) - 2:
+            # Skip adding anything that starts at here since this element
+            # is equal to the last element.
+            if left > 0 and nums[left] == nums[left - 1]:
+                left += 1
+                continue
+
+            mid = left + 1
+            right = len(nums) - 1
+            while mid < right:
+                s = nums[left] + nums[mid] + nums[right]
+                if s < 0:
+                    mid += 1
+                elif s > 0:
+                    right -= 1
+                else:
+                    result.append([left, mid, right])
+
+                    # Skip over duplicates
+                    while mid < right and nums[mid] == nums[mid + 1]:
+                        mid += 1
+                    while right > 0 and nums[right] == nums[right - 1]:
+                        right -= 1
+
+                mid += 1
+                right -= 1
+
+            left += 1
+
+        return result
