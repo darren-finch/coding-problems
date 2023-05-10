@@ -2013,3 +2013,49 @@ class Solution:
             left += 1
 
         return result
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # This ensures that more positive numbers are always to the right,
+        # and more negative numbers are always to the left, which turns out
+        # to be very valuable. Sorting also groups duplicates together.
+        nums.sort()
+
+        res = []
+        for left in range(len(nums) - 2):
+            if nums[left] > 0:
+                break
+
+            # Skip duplicates (we add all possible triplets for each number as we go along,
+            # so we want to skip repeats of numbers at all times
+            if left > 0 and nums[left - 1] == nums[left]:
+                continue
+
+            mid = left + 1
+            right = len(nums) - 1
+            while mid < right:
+                curSum = nums[left] + nums[mid] + nums[right]
+
+                if curSum < 0:
+                    mid += 1
+                elif curSum > 0:
+                    right -= 1
+                else:
+                    res.append([nums[left], nums[mid], nums[right]])
+
+                    # Skip duplicates for mid and right
+                    # If we have added [nums[left], nums[mid], nums[right]]
+                    # to output, and nums[left + 1] == nums[left] or
+                    # nums[mid + 1] == nums[mid] or nums[right - 1] == nums[right]
+                    # we want to skip over those numbers accordingly or we will get duplicate outputs
+                    while mid < right and nums[mid + 1] == nums[mid]:
+                        mid += 1
+
+                    while right > mid and nums[right - 1] == nums[right]:
+                        right -= 1
+
+                    mid += 1
+                    right -= 1
+
+        return res
