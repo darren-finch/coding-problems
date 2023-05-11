@@ -2059,3 +2059,19 @@ class Solution:
                     right -= 1
 
         return res
+
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        maxPrevPrev = -1
+        maxMoney = -1
+
+        for i, num in enumerate(nums):
+            if i == 0:
+                maxMoney = num
+
+            maxPrev = maxMoney
+            maxMoney = max(num + (maxPrevPrev if i > 1 else 0), maxPrev)
+            maxPrevPrev = maxPrev
+
+        return maxMoney
