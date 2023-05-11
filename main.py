@@ -2075,3 +2075,26 @@ class Solution:
             maxPrevPrev = maxPrev
 
         return maxMoney
+
+
+class Solution:
+    def __init__(self):
+        self.mem = {}
+
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        return self.maxScoreInner(cardPoints, 0, len(cardPoints) - 1, k)
+
+    def maxScoreInner(self, cardPoints: List[int], left: int, right: int, k: int):
+        if k == 1:
+            return max(cardPoints[left], cardPoints[right])
+
+        lrPair = (left, right)
+        if lrPair not in self.mem:
+            self.mem[lrPair] = max(
+                self.maxScoreInner(cardPoints, left + 1,
+                                   right, k - 1) + cardPoints[left],
+                self.maxScoreInner(cardPoints, left, right -
+                                   1, k - 1) + cardPoints[right]
+            )
+
+        return self.mem[lrPair]
