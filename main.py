@@ -300,6 +300,7 @@
 #     print("Hello world!")
 
 
+from queue import PriorityQueue
 from collections import deque
 from queue import Queue
 from queue import *
@@ -2098,3 +2099,41 @@ class Solution:
             )
 
         return self.mem[lrPair]
+
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        # numFrequencies = {}
+        # lastMax = None
+
+        # for num in nums:
+        #     if lastMax == None or num > lastMax:
+        #         lastMax = num
+
+        #     if num in numFrequencies:
+        #         numFrequencies[num] += 1
+        #     else:
+        #         numFrequencies[num] = 1
+
+        # for iteration in range(k):
+        #     if numFrequencies[lastMax] <= 0:
+        #         localMax = None
+        #         for num in nums:
+        #             if (localMax == None or localMax < num) and num < lastMax:
+        #                 localMax = num
+
+        #         lastMax = localMax
+
+        #     numFrequencies[lastMax] -= 1
+
+        # return lastMax
+
+        pq = PriorityQueue()
+        for num in nums:
+            pq.put(-num)
+
+        ans = 0
+        for i in range(k):
+            ans = -pq.get()
+
+        return ans
