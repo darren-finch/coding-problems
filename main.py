@@ -2137,3 +2137,28 @@ class Solution:
             ans = -pq.get()
 
         return ans
+
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        lisArr = [0 for num in nums]
+        globalLIS = 0
+
+        i = len(nums) - 1
+        while i >= 0:
+            lisLenStartingAtI = 1
+
+            j = i + 1
+            while j < len(nums):
+                if nums[i] < nums[j] and 1 + lisArr[j] > lisLenStartingAtI:
+                    lisLenStartingAtI = 1 + lisArr[j]
+                j += 1
+
+            lisArr[i] = lisLenStartingAtI
+
+            if globalLIS < lisLenStartingAtI:
+                globalLIS = lisLenStartingAtI
+
+            i -= 1
+
+        return globalLIS
