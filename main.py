@@ -2162,3 +2162,54 @@ class Solution:
             i -= 1
 
         return globalLIS
+
+
+class Solution:
+    # O(n * m) time
+    # O(1) space
+    # def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    #     smArr = nums1
+    #     lgArr = nums2
+
+    #     if len(nums2) < len(nums1):
+    #         smArr = nums2
+    #         lgArr = nums1
+
+    #     ans = []
+    #     for smArrElem in smArr:
+    #         for j, lgArrElem in enumerate(lgArr):
+    #             if smArrElem == lgArrElem:
+    #                 ans.append(smArrElem)
+
+    #                 # Mark this element as taken
+    #                 lgArr[j] = None
+
+    #                 break
+
+    #     return ans
+
+    # O(n) time where n = max(len(nums1), len(nums2))
+    # O(n) space where n = min(len(nums1), len(nums2))
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        if len(nums1) > len(nums2):
+            return self.intersect(nums2, nums1)
+
+        numCountPairs = {}
+        for num in nums1:
+            if num in numCountPairs:
+                numCountPairs[num][0] += 1
+            else:
+                numCountPairs[num] = [1, 0]
+
+        for num in nums2:
+            if num in numCountPairs:
+                numCountPairs[num][1] += 1
+
+        ans = []
+
+        for num, countPair in numCountPairs.items():
+            minCount = min(countPair)
+            for i in range(minCount):
+                ans.append(num)
+
+        return ans
