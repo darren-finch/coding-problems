@@ -2220,3 +2220,26 @@ class Solution:
         points.sort(key=lambda point: pow(point[0], 2) + pow(point[1], 2))
 
         return points[0:k]
+
+
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        globalDirection = None
+
+        for i in range(len(nums)):
+            if i == 0:
+                continue
+
+            localDirection = 0
+            if nums[i] < nums[i - 1]:
+                localDirection = -1
+            elif nums[i] > nums[i - 1]:
+                localDirection = 1
+
+            if globalDirection == None and localDirection != 0:
+                globalDirection = localDirection
+
+            if globalDirection != None and localDirection != 0 and localDirection != globalDirection:
+                return False
+
+        return True
