@@ -2243,3 +2243,22 @@ class Solution:
                 return False
 
         return True
+
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l = 0
+        r = len(nums) - 1
+
+        while l < r:
+            m = int((l + r) / 2)
+
+            if (nums[m - 1] < nums[m] and nums[m] > nums[m + 1]):
+                return m
+
+            if (nums[r - 1] < nums[r]) or (nums[m] < nums[m + 1]):
+                l = m + 1
+            else:
+                r = m - 1
+
+        return l
