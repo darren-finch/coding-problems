@@ -2262,3 +2262,36 @@ class Solution:
                 r = m - 1
 
         return l
+
+
+# It's worth bragging on myself here because after looking at the hints, I wrote this code
+# and it worked the very first time lol. That never happens.
+class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        totalSum = 0
+        prefixArr = cardPoints
+
+        for i, points in enumerate(cardPoints):
+            totalSum += points
+            prefixArr[i] = totalSum
+
+        n = len(cardPoints)
+
+        if k == n:
+            return totalSum
+
+        left = 0
+        right = n - k - 1
+        maxTotalSum = None
+
+        while right < n:
+            sumBeforeWindowTail = 0 if left == 0 else prefixArr[left - 1]
+            sumToRemove = prefixArr[right] - sumBeforeWindowTail
+
+            if maxTotalSum == None or totalSum - sumToRemove > maxTotalSum:
+                maxTotalSum = totalSum - sumToRemove
+
+            right += 1
+            left += 1
+
+        return maxTotalSum
