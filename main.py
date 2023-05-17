@@ -2295,3 +2295,47 @@ class Solution:
             left += 1
 
         return maxTotalSum
+
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if head == None:
+            return None
+
+        originalNodesToIndices = {}
+        arrayOfNewNodes = []
+        pointer = head
+        i = 0
+
+        # Copy list nodes into array
+        while pointer != None:
+            originalNodesToIndices[pointer] = i
+
+            # We initialize the new Node with the original random value
+            # so we can reference it later. This will be changed to a new
+            # node later on.
+            newNode = Node(pointer.val, None, pointer.random)
+            arrayOfNewNodes.append(newNode)
+
+            pointer = pointer.next
+            i += 1
+
+        # Set next and random on all list nodes
+        for i, node in enumerate(arrayOfNewNodes):
+            node.next = arrayOfNewNodes[i + 1] if i + \
+                1 < len(arrayOfNewNodes) else None
+            if node.random != None:
+                indexOfNewRandomNode = originalNodesToIndices[node.random]
+                node.random = arrayOfNewNodes[indexOfNewRandomNode]
+
+        return arrayOfNewNodes[0]
