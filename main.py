@@ -2361,3 +2361,23 @@ class Solution:
                 return nums[p]
 
         return quickSelect(0, len(nums) - 1)
+
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        sumsToFrequencies = {0: 1}
+        totalSum = 0
+        ans = 0
+
+        for i, num in enumerate(nums):
+            totalSum += num
+
+            if totalSum - k in sumsToFrequencies:
+                ans += sumsToFrequencies[totalSum - k]
+
+            if totalSum in sumsToFrequencies:
+                sumsToFrequencies[totalSum] += 1
+            else:
+                sumsToFrequencies[totalSum] = 1
+
+        return ans
