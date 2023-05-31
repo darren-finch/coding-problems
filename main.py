@@ -2381,3 +2381,35 @@ class Solution:
                 sumsToFrequencies[totalSum] = 1
 
         return ans
+
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        maxArea = 0
+
+        def bfs(row: int, col: int) -> int:
+            nonlocal maxArea
+            curArea = 0
+
+            queue = Queue()
+            queue.put((row, col))
+            grid[row][col] = 2
+
+            while not queue.empty():
+                (nextRow, nextCol) = queue.get()
+
+                curArea += 1
+                if curArea > maxArea:
+                    maxArea = curArea
+
+                for (neighborRow, neighborCol) in [(nextRow + 1, nextCol), (nextRow - 1, nextCol), (nextRow, nextCol + 1), (nextRow, nextCol - 1)]:
+                    if 0 <= neighborRow < len(grid) and 0 <= neighborCol < len(grid[0]) and grid[neighborRow][neighborCol] == 1:
+                        queue.put((neighborRow, neighborCol))
+                        grid[neighborRow][neighborCol] = 2
+
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == 1:
+                    bfs(row, col)
+
+        return maxArea
