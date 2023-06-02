@@ -2413,3 +2413,21 @@ class Solution:
                     bfs(row, col)
 
         return maxArea
+
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        minInt = -2147483649
+        maxInt = 2147483648
+
+        def isValidBSTInner(root: Optional[TreeNode], minVal: int, maxVal: int) -> bool:
+            if root == None:
+                return True
+
+            return (
+                minVal < root.val and root.val < maxVal and
+                isValidBSTInner(root.left, minVal, root.val) and
+                isValidBSTInner(root.right, root.val, maxVal)
+            )
+
+        return isValidBSTInner(root, minInt, maxInt)
