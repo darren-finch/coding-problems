@@ -2451,3 +2451,18 @@ class Solution:
             i -= 1
 
         return res
+
+
+for _ in range(int(input())):
+    n, k = tuple(map(lambda n: int(n), input().split(' ')))
+    um = list(map(lambda m: int(m), input().split(' ')))
+
+    ans = ''
+    for m in um:
+        if k - m >= 0:
+            ans += '1'
+            k -= m
+        else:
+            ans += '0'
+
+    print(ans)
