@@ -2431,3 +2431,23 @@ class Solution:
             )
 
         return isValidBSTInner(root, minInt, maxInt)
+
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        res = [num for num in nums]
+        i = len(res) - 1
+        l, r = 0, len(res) - 1
+
+        while l <= r:
+            powL = nums[l] * nums[l]
+            powR = nums[r] * nums[r]
+            if powL > powR:
+                res[i] = powL
+                l += 1
+            else:
+                res[i] = powR
+                r -= 1
+            i -= 1
+
+        return res
