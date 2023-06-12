@@ -2466,3 +2466,29 @@ for _ in range(int(input())):
             ans += '0'
 
     print(ans)
+
+
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        if len(nums) == 0:
+            return []
+
+        ans = []
+        p1 = 0
+        p2 = 0
+        curRange = ''
+
+        while p2 < len(nums):
+            if p1 == p2:
+                curRange = str(nums[p1])
+                p2 += 1
+            elif nums[p2] - nums[p2 - 1] <= 1:
+                curRange = str(nums[p1]) + '->' + str(nums[p2])
+                p2 += 1
+            else:
+                ans.append(curRange)
+                p1 = p2
+
+        ans.append(curRange)
+
+        return ans
