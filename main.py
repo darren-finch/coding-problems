@@ -2492,3 +2492,16 @@ class Solution:
         ans.append(curRange)
 
         return ans
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        globalBestStart = 0
+        globalBestEnd = 1
+
+        runner = 1
+
+        while runner < len(height):
+            # TBC
+            pass
+        pass
