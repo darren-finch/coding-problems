@@ -2505,3 +2505,47 @@ class Solution:
             # TBC
             pass
         pass
+
+
+class TrieNode:
+    def __init__(self, blue: bool):
+        self.children = {}
+        self.blue = blue
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode(False)
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for i, char in enumerate(word):
+            if char not in curr.children:
+                curr.children[char] = TrieNode(False)
+            curr = curr.children[char]
+        curr.blue = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for i, char in enumerate(word):
+            if char not in curr.children:
+                return False
+            elif i == len(word) - 1 and curr.children[char].blue:
+                return True
+            curr = curr.children[char]
+        return False
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for i, char in enumerate(prefix):
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return True
+
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
